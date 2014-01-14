@@ -30,8 +30,15 @@
 
 <label class="formQuestion" for="replyto">
 我要收到每日公告
-<input type="checkbox" name="checkedregister" value="True" checked tal:condition="python:True if member.checkedregister == True else False" />
-<input type="checkbox" name="checkedregister" value="False" tal:condition="python:True if member.checkedregister == False else False" />
+<tal:hasCheckedAttr condition="python:hasattr(member,'checkedregister')">
+  <input type="checkbox" name="checkedregister" value="True" checked tal:condition="python:True if member.checkedregister == True else False" />
+  <input type="checkbox" name="checkedregister" value="False" tal:condition="python:True if member.checkedregister == False else False" />
+</tal:hasCheckedAttr>
+
+<tal:noCheckedAttr condition="python:not hasattr(member,'checkedregister')">
+  <input type="checkbox" name="checkedregister" value="True" checked/>
+</tal:noCheckedAttr>
+
 </label>
 
 <label class="formQuestion" for="replyto">
