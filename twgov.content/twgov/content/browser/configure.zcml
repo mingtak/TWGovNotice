@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="twgov.content">
+
+  <include package="z3c.jbot" file="meta.zcml" />
+    <browser:jbot
+      directory="jbot_templates" />
+
+  <browser:page
+    for="*"
+    name="getgovnotice"
+    permission="cmf.ManagePortal"
+    class=".getgovnotice.GetGovNotice" />
+
+  <browser:page
+    for="*"
+    name="sendgovnotice"
+    permission="cmf.ManagePortal"
+    class=".sendgovnotice.SendGovNotice" />
+
+</configure>

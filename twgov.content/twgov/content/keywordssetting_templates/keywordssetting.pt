@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="twgov.content">
+<body>
+
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+
+<tal:membership define="membership context/portal_membership;
+                        memberId context/REQUEST/AUTHENTICATED_USER;
+                        member python:membership.getMemberById(str(memberId))">
+
+
+<tal:isAnonymous condition="python:True if str(memberId) == 'Anonymous User' else False">
+  <span tal:condition="python:False" tal:content="string:測試匿名，轉向login" />
+  <script>document.location.href="login";</script>
+</tal:isAnonymous>
+
+<span tal:condition="python:False" tal:content="string:form 開始" />
+
+<div class="p33">
+
+<form name="edit_form" method="post" class="fgBaseEditForm " id="fg-base-edit" action="" tal:attributes="action request/URL">
+
+<label class="formQuestion" for="replyto">
+我要收到每日公告
+<input type="checkbox" name="checkedregister" value="True" checked tal:condition="python:True if member.checkedregister == True else False" />
+<input type="checkbox" name="checkedregister" value="False" tal:condition="python:True if member.checkedregister == False else False" />
+</label>
+
+<label class="formQuestion" for="replyto">
+Your E-Mail Address
+</label>
+<input type="text" name="replyto" class="blurrable firstToFocus" id="replyto"
+       size="30" maxlength="255" value="" tal:attributes="value member/emailaddress|nothing" />
+
+<fieldset class="PFGFieldsetWidget" id="pfg-fieldsetname-keywords">
+<legend for="pfg-fieldsetname-keywords">
+keywords
+</legend>
+
+<div class="formHelp" id="keywords_help"></div>
+<div class="field ArchetypesStringWidget " data-fieldname="keyword1" id="archetypes-fieldname-keyword1">
+<span></span>
+<label class="formQuestion" for="keyword1">
+keyword
+<span class="formHelp" id="keyword1_help"></span>
+</label>
+<div class="fieldErrorBox"></div>
+<input type="text" name="keyword1" class="blurrable firstToFocus" id="keyword1"
+       size="10" maxlength="255" value="" tal:attributes="value member/keyword1|nothing" />
+</div>
+
+<div class="field ArchetypesStringWidget " data-fieldname="keyword2" id="archetypes-fieldname-keyword2">
+<span></span>
+<label class="formQuestion" for="keyword2">
+keyword
+<span class="formHelp" id="keyword2_help"></span>
+</label>
+<div class="fieldErrorBox"></div>
+<input type="text" name="keyword2" class="blurrable firstToFocus" id="keyword2"
+       size="10" maxlength="255" value="" tal:attributes="value member/keyword2|nothing" />
+</div>
+
+<div class="field ArchetypesStringWidget " data-fieldname="keyword3" id="archetypes-fieldname-keyword3">
+<span></span>
+<label class="formQuestion" for="keyword3">
+keyword
+<span class="formHelp" id="keyword3_help"></span>
+</label>
+<div class="fieldErrorBox"></div>
+<input type="text" name="keyword3" class="blurrable firstToFocus" id="keyword3"
+       size="10" maxlength="255" value="" tal:attributes="value member/keyword3|nothing" />
+</div>
+
+<div class="field ArchetypesStringWidget " data-fieldname="keyword4" id="archetypes-fieldname-keyword4">
+<span></span>
+<label class="formQuestion" for="keyword4">
+keyword
+<span class="formHelp" id="keyword4_help"></span>
+</label>
+<div class="fieldErrorBox"></div>
+<input type="text" name="keyword4" class="blurrable firstToFocus" id="keyword4"
+       size="10" maxlength="255" value="" tal:attributes="value member/keyword4|nothing" />
+</div>
+
+<div class="field ArchetypesStringWidget " data-fieldname="keyword5" id="archetypes-fieldname-keyword5">
+<span></span>
+<label class="formQuestion" for="keyword5">
+keyword
+<span class="formHelp" id="keyword5_help"></span>
+</label>
+<div class="fieldErrorBox"></div>
+<input type="text" name="keyword5" class="blurrable firstToFocus" id="keyword5"
+       size="10" maxlength="255" value="" tal:attributes="value member/keyword5|nothing" />
+</div>
+
+</fieldset>
+
+
+<div class="formControls">
+
+<input class="context" type="submit" name="form_submit" value="Submit" />
+</div>
+</form>
+
+</div>
+<span tal:condition="python:False" tal:content="string:form 結束" />
+</tal:membership>
+
+
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>

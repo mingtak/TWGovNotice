@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="twgov.content">
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+</tal:comment>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+
+<div class="p97 right widget">
+  <p></p>
+  <h2>最新標案公告</h2>
+
+
+  <tal:noticeList define="catalog python:context.portal_catalog;
+                          brains python:catalog(portal_type='twgov.content.govnotice',
+                                                sort_on='created',
+                                                sort_order='descending')[:6]"
+                  repeat="i python:range(len(brains))">
+
+<div class="p100">
+    <div class="p33" tal:define="object python:brains[i];
+                                 getUrl python:object.getPath().split('/twGovBidding')[1]">
+     <h5 class="smaller-margin"><span class="square-icons red"><i class="icon-edit"></i></span>
+       <a tal:attributes="href getUrl" tal:content="object/Title"> notice title
+       </a>
+     </h5>
+     <p><span tal:content="structure string:<strong>招標單位:</strong>${object/govDepartment}"> gov department </span><br />
+        <span tal:content="structure string:<strong>預算金額:</strong>${object/budget}"> notice budget </span><br />
+        <span tal:content="structure string:<strong>招標方式:</strong>${object/bidWay}"> notice bid way </span><br />
+        <tal:endDate define="endDate python:str(object.endDate).split()[0]">
+          <span tal:content="structure string:<strong>截標日期:</strong>${endDate}"> notice end date </span>
+        </tal:endDate>
+        <a class="right" href="" tal:attributes="href getUrl">詳見...</a>
+     </p>
+    </div>
+    <p tal:condition="python:True if i%3 == 2 and i%6 != 5 else False" class='center'>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 728_90超級橫幅 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-9621066722313042"
+     data-ad-slot="5112885076"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--      <br /><br /><br /><br /><br /><br /><br /><br /><br /> <br /><br /><br /> -->
+    </p>
+
+</div>
+  </tal:noticeList>
+
+</div>
+
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+
