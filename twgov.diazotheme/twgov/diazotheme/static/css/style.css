@@ -33,7 +33,11 @@ a:hover { color: black; text-decoration: none;
 --------------------------------------------------------- */
 label { display: block; padding: 5px 0 5px 0; font-size: 1.0em; font-weight: 400; }
 
+/*
 input[type=text],  input[type=email],  input[type=tel],  input[type=password],  textarea { border: 0; outline: 0; background: #f8f8f8;  width: 98%; color: #747474; height: 20px; padding: 4px 0 4px 7px; -webkit-appearance: none; -webkit-focus-ring-color: none; border: 1px solid #e8e8e8; border-radius: 4px; }
+*/
+input[type=text],  input[type=email],  input[type=tel],  input[type=password],  textarea { border: 0; outline: 0; background: #f8f8f8;  width: 98%; color: #747474; height: 100%; padding: 4px 0 4px 7px; -webkit-appearance: none; -webkit-focus-ring-color: none; border: 1px solid #e8e8e8; border-radius: 4px; }
+
 select { outline: 0 !important; }
 input[type=text]:focus,  input[type=email]:focus,  input[type=tel]:focus,  input[type=password]:focus,  textarea:focus { border-color: #d8d8d8; }
 
@@ -687,3 +691,39 @@ ______________________________________ */
 
 
 /* edit bar */
+
+
+
+/* progress bar */
+
+
+
+.red-bar {
+	background-color:#eb3e38 !important;
+	width:15%;
+}
+
+.violet-bar {
+	background-color:#7c378a !important;
+	width:15%;
+}
+
+.blue-bar {
+	background-color:#0070aa !important;
+	width:15%;
+}
+
+.green-bar {
+	background-color:#7cb854 !important;
+	width:15%;
+}
+
+.orange-bar {
+	background-color:#e57d04 !important;
+	width:15%;
+}
+
+.yellow-bar {
+	background-color:#f2b701 !important;
+	width:10%;
+}
