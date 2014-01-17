@@ -139,6 +139,9 @@ class GetGovNotice(BrowserView):
                 elif T11bString == NOTICE_KEYWORDS[21]:
                     [text for text in T11b.find_next_siblings("td")[0].stripped_strings]
                     companyAbility = text
+                elif T11bString == NOTICE_KEYWORDS[22]:
+                    [text for text in T11b.find_next_siblings("td")[0].stripped_strings]
+                    organizationCode = text
 #            return '%s\n%s\n' % (noticeName,str(endDate))
             #assign value
             contentId = '%s%s' % (str(datetime.now().strftime('%Y%m%d%H%M')), str(randrange(10000000,100000000)))
@@ -174,6 +177,7 @@ class GetGovNotice(BrowserView):
             item.documentSendTo = documentSendTo
             item.companyQualification = companyQualification
             item.companyAbility = companyAbility
+            item.organizationCode = organizationCode
             item.noticeUrl = link
             # setting Description
             '''

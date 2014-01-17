@@ -20,4 +20,10 @@
     permission="cmf.ManagePortal"
     class=".sendgovnotice.SendGovNotice" />
 
+  <browser:page
+    for="*"
+    name="checkcode"
+    permission="cmf.ManagePortal"
+    class=".checkcode.CheckCode" />
+
 </configure>

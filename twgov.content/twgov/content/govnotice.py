@@ -148,6 +148,12 @@ class IgovNotice(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+#    form.mode(organizationCode='hidden')
+    organizationCode = schema.TextLine(
+        title=_(u"organization Code"),
+        required=False,
+    )
+
     #setting full text search field
     dexteritytextindexer.searchable('govDepartment')
 
