@@ -7,7 +7,7 @@ from ..config import PCC_DOMAIN
 from ..config import TEST_STRING
 from ..config import NOTICE_KEYWORDS
 from plone import api
-from random import randrange
+from random import random, choice, randrange
 from datetime import datetime
 
 
@@ -179,13 +179,41 @@ class GetGovNotice(BrowserView):
             item.companyAbility = companyAbility
             item.organizationCode = organizationCode
             item.noticeUrl = link
-            # setting Description
-            '''
-            item.description = '%s%s\n%s%s\n%s%s\n%s%s' % ('預算金額:', 'budget',
-                                                           '招標方式:', bidWay,
-                                                           '決標方式:', decideWay,
-                                                           '截標時間', str(item.endDate),)
-            '''
+
+            # setting hotPoint, viewPoint, budgetPoint and importantPoint
+            if len(organizationCode.split('.')) == 1 and len(organizationCode) < 3:
+                item.viewPoint = 90 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(organizationCode.split('.')) == 2:
+                item.viewPoint = 75 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(organizationCode.split('.')) == 3:
+                item.viewPoint = 60 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(organizationCode.split('.')) == 4:
+                item.viewPoint = 52 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(organizationCode.split('.')) >= 5:
+                item.viewPoint = 45 + (10 * random() * int(choice(['-1' ,'1'])))
+            else:
+                item.viewPoint = 45 + (10 * random() * int(choice(['-1' ,'1'])))
+
+            if len(budget) >= 16:
+                item.budgetPoint = 45 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(budget) > 12 and len(budget) < 16:
+                item.budgetPoint = 90 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(budget) == 12 and int(budget[0]) > 2:
+                item.budgetPoint = 80 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(budget) == 12 and int(budget[0]) <= 2:
+                item.budgetPoint = 70 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(budget) == 11 and int(budget[0]) > 5:
+                item.budgetPoint = 60 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(budget) == 11 and int(budget[0]) <= 5:
+                item.budgetPoint = 52 + (10 * random() * int(choice(['-1' ,'1'])))
+            elif len(budget) <= 10:
+                item.budgetPoint = 45 + (10 * random() * int(choice(['-1' ,'1'])))
+            else:
+                item.budgetPoint = 45 + (10 * random() * int(choice(['-1' ,'1'])))
+
+            item.hotPoint = (item.viewPoint * 0.35) + (item.budgetPoint * 0.65)
+            item.importantPoint = (item.viewPoint + item.budgetPoint + item.hotPoint) / 3
+
             # exclude from nav and reindex object
             item.exclude_from_nav = True
             item.reindexObject(idxs=['exclude_from_nav'])
