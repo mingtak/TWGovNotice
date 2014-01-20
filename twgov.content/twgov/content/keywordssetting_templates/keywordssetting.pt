@@ -27,7 +27,7 @@
 <div class="p33">
 
 <form name="edit_form" method="post" class="fgBaseEditForm " id="fg-base-edit" action="" tal:attributes="action request/URL">
-
+<br />
 <label class="formQuestion" for="replyto">
 我要收到每日公告
 <tal:hasCheckedAttr condition="python:hasattr(member,'checkedregister')">
@@ -42,21 +42,22 @@
 </label>
 
 <label class="formQuestion" for="replyto">
-Your E-Mail Address
+您的電子郵件信箱：
 </label>
 <input type="text" name="replyto" class="blurrable firstToFocus" id="replyto"
        size="30" maxlength="255" value="" tal:attributes="value member/emailaddress|nothing" />
-
+<br /><br />
 <fieldset class="PFGFieldsetWidget" id="pfg-fieldsetname-keywords">
 <legend for="pfg-fieldsetname-keywords">
-keywords
+追蹤關鍵字(最多5組)：
 </legend>
+<br />
 
 <div class="formHelp" id="keywords_help"></div>
 <div class="field ArchetypesStringWidget " data-fieldname="keyword1" id="archetypes-fieldname-keyword1">
 <span></span>
 <label class="formQuestion" for="keyword1">
-keyword
+關鍵字1
 <span class="formHelp" id="keyword1_help"></span>
 </label>
 <div class="fieldErrorBox"></div>
@@ -67,7 +68,7 @@ keyword
 <div class="field ArchetypesStringWidget " data-fieldname="keyword2" id="archetypes-fieldname-keyword2">
 <span></span>
 <label class="formQuestion" for="keyword2">
-keyword
+關鍵字2
 <span class="formHelp" id="keyword2_help"></span>
 </label>
 <div class="fieldErrorBox"></div>
@@ -78,7 +79,7 @@ keyword
 <div class="field ArchetypesStringWidget " data-fieldname="keyword3" id="archetypes-fieldname-keyword3">
 <span></span>
 <label class="formQuestion" for="keyword3">
-keyword
+關鍵字3
 <span class="formHelp" id="keyword3_help"></span>
 </label>
 <div class="fieldErrorBox"></div>
@@ -89,7 +90,7 @@ keyword
 <div class="field ArchetypesStringWidget " data-fieldname="keyword4" id="archetypes-fieldname-keyword4">
 <span></span>
 <label class="formQuestion" for="keyword4">
-keyword
+關鍵字4
 <span class="formHelp" id="keyword4_help"></span>
 </label>
 <div class="fieldErrorBox"></div>
@@ -100,7 +101,7 @@ keyword
 <div class="field ArchetypesStringWidget " data-fieldname="keyword5" id="archetypes-fieldname-keyword5">
 <span></span>
 <label class="formQuestion" for="keyword5">
-keyword
+關鍵字5
 <span class="formHelp" id="keyword5_help"></span>
 </label>
 <div class="fieldErrorBox"></div>
@@ -112,8 +113,8 @@ keyword
 
 
 <div class="formControls">
-
-<input class="context" type="submit" name="form_submit" value="Submit" />
+<br />
+<input class="context" type="submit" name="form_submit" value="送出" />
 </div>
 </form>
 
