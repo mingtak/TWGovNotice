@@ -6,20 +6,16 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="twgov.content">
 <body>
-
-
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
 
 <tal:membership define="membership context/portal_membership;
-                        memberId context/REQUEST/AUTHENTICATED_USER;
-                        member python:membership.getMemberById(str(memberId))">
+                        member membership/getAuthenticatedMember;">
 
-
-<tal:isAnonymous condition="python:True if str(memberId) == 'Anonymous User' else False">
+<tal:isAnonymous condition="python:True if str(member) == 'Anonymous User' else False">
   <span tal:condition="python:False" tal:content="string:測試匿名，轉向login" />
-  <script>document.location.href="login";</script>
+  <script>document.location.href="/";</script>
 </tal:isAnonymous>
 
 <span tal:condition="python:False" tal:content="string:form 開始" />
@@ -121,7 +117,6 @@
 </div>
 <span tal:condition="python:False" tal:content="string:form 結束" />
 </tal:membership>
-
 
 
   </metal:content-core>
