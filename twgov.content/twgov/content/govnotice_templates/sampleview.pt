@@ -69,41 +69,40 @@
       </div>
 
       <div class="tab tab7" style="display: none;">
-        <h3>建構中，敬請期待...</h3>
-<!--
+
         <strong></strong>
 	<p><strong>標案動態：</strong><span>尚無動態<span></p>
 	<p style="padding-left:5em" tal:condition="python:False">尚無動態</p>
 	<p><strong>標案指標：</strong></p>
 	<div class="p66 left" >
           <div class="progress progress-striped active" style="font-size:2em;valign:center">
+            <div class="progress-bar red-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
+                 tal:attributes="style python:'%s%s%s' % ('width:', context.hotPoint, '%;; font-size:0.62em')">
+              <p class="left" style="padding-left:1em" tal:content="python:'%s%s' % ('熱門指標：', int(context.hotPoint))"> 熱門指標：30</p>
+            </div>
+          </div>
+          <div class="progress progress-striped active" style="font-size:2em;valign:center">
             <div class="progress-bar green-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
-                 style="width:30%; font-size:0.62em">
-              <p class="left" style="padding-left:1em"> 觀注度：30</p>
+                 tal:attributes="style python:'%s%s%s' % ('width:', context.viewPoint, '%;; font-size:0.62em')">
+              <p class="left" style="padding-left:1em" tal:content="python:'%s%s' % ('觀注指標：', int(context.viewPoint))"> 觀注指標：30</p>
             </div>
           </div>
           <div class="progress progress-striped active" style="font-size:2em;valign:center">
             <div class="progress-bar orange-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
-                 style="width:32%; font-size:0.62em">
-              <p class="left" style="padding-left:1em"> 熱門度：32</p>
+                 tal:attributes="style python:'%s%s%s' % ('width:', context.budgetPoint, '%;; font-size:0.62em')">
+              <p class="left" style="padding-left:1em" tal:content="python:'%s%s' % ('巨額指標：', int(context.budgetPoint))"> 巨額指標：30</p>
             </div>
           </div>
           <div class="progress progress-striped active" style="font-size:2em;valign:center">
             <div class="progress-bar blue-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
-                 style="width:78%; font-size:0.62em">
-              <p class="left" style="padding-left:1em"> 點閱率：78</p>
-            </div>
-          </div>
-          <div class="progress progress-striped active" style="font-size:2em;valign:center">
-            <div class="progress-bar red-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
-                 style="width:64%; font-size:0.62em">
-              <p class="left" style="padding-left:1em"> 重要度：64</p>
+                 tal:attributes="style python:'%s%s%s' % ('width:', context.importantPoint, '%;; font-size:0.62em')">
+              <p class="left" style="padding-left:1em" tal:content="python:'%s%s' % ('綜合指標：', int(context.importantPoint))"> 綜合指標：30</p>
             </div>
           </div>
         </div>
         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       </div>
--->
+
     </div>
 
 <!-- AddThis Button BEGIN -->

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from five import grok
 from Acquisition import aq_inner
 from zope.annotation.interfaces import IAnnotatable, IAnnotations
@@ -13,12 +14,11 @@ class KeywordsSetting(grok.View):
     grok.name('keywords_setting')
 
     def update(self):
-        userId = str(self.request['AUTHENTICATED_USER'])
-        userItem = api.user.get(userid=userId)
+        userItem = api.user.get_current()
         if hasattr(self.request, 'replyto'):
             isEmailString = self.request['replyto']
             if len(isEmailString.split('@')) != 2 or len(isEmailString.split('@')[1].split('.')) == 1:
-                api.portal.show_message(message='Email Format Error!!!', request=self.request, type='error')
+                api.portal.show_message(message=u'Email 格式錯誤!!!', request=self.request, type='error')
             else:
                 if self.request.has_key('checkedregister'):
                     userItem.checkedregister = True
