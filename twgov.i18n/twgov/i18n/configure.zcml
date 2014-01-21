@@ -26,9 +26,9 @@
        in Plone -->
   <genericsetup:registerProfile
       name="default"
-      title="i18n project for twgov"
+      title="i18n for twgov"
       directory="profiles/default"
-      description="Extension profile for i18n project for twgov"
+      description="Extension profile for i18n for twgov"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 

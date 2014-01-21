@@ -5,7 +5,7 @@ version = '1.0'
 
 setup(name='twgov.i18n',
       version=version,
-      description="i18n project for twgov",
+      description="i18n for twgov",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
