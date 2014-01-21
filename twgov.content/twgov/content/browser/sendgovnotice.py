@@ -6,24 +6,26 @@ from Products.Five.browser import BrowserView
 #from ..config import TEST_STRING
 #from ..config import NOTICE_KEYWORDS
 from ..config import PORTAL_DIR, SITE_URL
+from ..config import LOG_FILE_PATH
 from plone import api
 #from random import randrange
 #from datetime import datetime
 from DateTime import DateTime
 from email.mime.text import MIMEText
 from Products.CMFCore.utils import getToolByName
+from datetime import datetime
 
 
 def writeLog(log):
-    with open('/home/plone/yyyyy', 'a') as yyyyy:
-        yyyyy.write(log + '\n')
+    with open(LOG_FILE_PATH, 'a') as logFile:
+        logFile.write(log + '\n')
 
 
 #發送govnotice 給使用者
 class SendGovNotice(BrowserView):
     def __call__(self):
-        #找前12小時
-        start = DateTime() - 0.5
+        #找前13小時
+        start = DateTime() - 0.55
         now = DateTime()
 
         catalog = api.portal.get_tool(name='portal_catalog')
@@ -44,7 +46,7 @@ class SendGovNotice(BrowserView):
 
         for userId in users:
             user = api.user.get(userid=userId)
-            writeLog('%s\n%s\n%s' % (user.emailaddress, 'get user, ', str(hasattr(user,'emailaddress'))))
+#            writeLog('%s\n%s\n%s' % (user.emailaddress, 'get user, ', str(hasattr(user,'emailaddress'))))
             if '@' in user.emailaddress and user.checkedregister is True:
                 keywords = (user.keyword1,
                             user.keyword2,
@@ -81,7 +83,7 @@ class SendGovNotice(BrowserView):
                                                         '您好，Play公社-政府採購公告：',
                                                         str(DateTime()).split()[0]),
                                       body='%s' % (mimeBody.as_string()))
-                writeLog('%s%s' % ('send mail OK, to ', user.emailaddress))
+                writeLog('%s, send mail OK, to %s' % (str(datetime.now()), user.emailaddress))
 #                return
             else:
                 continue
