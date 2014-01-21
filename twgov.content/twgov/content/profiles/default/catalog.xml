@@ -35,7 +35,19 @@
     </index>
     <column value="endDate"/>
 
+    <index name="hotPoint" meta_type="FieldIndex">
+        <indexed_attr value="hotPoint"/>
+    </index>
+    <column value="hotPoint"/>
 
+    <index name="viewPoint" meta_type="FieldIndex">
+        <indexed_attr value="viewPoint"/>
+    </index>
+    <column value="viewPoint"/>
 
+    <index name="budgetPoint" meta_type="FieldIndex">
+        <indexed_attr value="budgetPoint"/>
+    </index>
+    <column value="budgetPoint"/>
 
 </object>

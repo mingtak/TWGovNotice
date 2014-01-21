@@ -34,17 +34,17 @@ class IgovNotice(form.Schema, IImageScaleTraversable):
     form.model("models/govnotice.xml")
 
     govDepartment = schema.TextLine(
-        title=_(u'governmetn departments'),
+        title=_(u'government departments'),
         required=False,
     )
 
     govBranch = schema.TextLine(
-        title=_(u'governmetn branch unit'),
+        title=_(u'government branch unit'),
         required=False,
     )
 
     govAddress = schema.TextLine(
-        title=_(u'governmetn branch unit address'),
+        title=_(u'government branch unit address'),
         required=False,
     )
 
@@ -124,7 +124,7 @@ class IgovNotice(form.Schema, IImageScaleTraversable):
     )
 
     bidDeposit = schema.TextLine(
-        title=_(u'bid  deposit'),
+        title=_(u'bid deposit'),
         required=False,
     )
 
@@ -153,6 +153,34 @@ class IgovNotice(form.Schema, IImageScaleTraversable):
         title=_(u"organization Code"),
         required=False,
     )
+
+    form.mode(hotPoint='hidden')
+    hotPoint = schema.Float(
+        title=_(u"hot point"),
+        required=False,
+    )
+
+    form.mode(viewPoint='hidden')
+    viewPoint = schema.Float(
+        title=_(u"view point"),
+        required=False,
+    )
+
+    form.mode(budgetPoint='hidden')
+    budgetPoint = schema.Float(
+        title=_(u"budget point"),
+        required=False,
+    )
+
+    form.mode(importantPoint='hidden')
+    importantPoint = schema.Float(
+        title=_(u"important point"),
+        required=False,
+    )
+
+
+
+
 
     #setting full text search field
     dexteritytextindexer.searchable('govDepartment')
@@ -209,4 +237,24 @@ grok.global_adapter(bidWay_indexer, name='bidWay')
 def endDate_indexer(obj):
      return obj.endDate
 grok.global_adapter(endDate_indexer, name='endDate')
+
+@indexer(IgovNotice)
+def hotPoint_indexer(obj):
+     return obj.hotPoint
+grok.global_adapter(hotPoint_indexer, name='hotPoint')
+
+@indexer(IgovNotice)
+def viewPoint_indexer(obj):
+     return obj.viewPoint
+grok.global_adapter(viewPoint_indexer, name='viewPoint')
+
+@indexer(IgovNotice)
+def budgetPoint_indexer(obj):
+     return obj.budgetPoint
+grok.global_adapter(budgetPoint_indexer, name='budgetPoint')
+
+
+
+
+
 
