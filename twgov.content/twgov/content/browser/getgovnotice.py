@@ -6,14 +6,15 @@ from ..config import GOV_NOTICE_URL
 from ..config import PCC_DOMAIN
 from ..config import TEST_STRING
 from ..config import NOTICE_KEYWORDS
+from ..config import LOG_FILE_PATH
 from plone import api
 from random import random, choice, randrange
 from datetime import datetime
 
 
 def writeLog(log):
-    with open('/home/plone/yyyyy', 'a') as yyyyy:
-        yyyyy.write(log)
+    with open(LOG_FILE_PATH, 'a') as logFile:
+        logFile.write('%s\n' % log)
 
 class GetGovNotice(BrowserView):
     def __call__(self):
@@ -152,33 +153,39 @@ class GetGovNotice(BrowserView):
                                    id=contentId,
                                    endDate=datetime(endDate[0], endDate[1], endDate[2], endDate[3], endDate[4]))
             except:
+                writeLog('%s, error : create content fail, %s' % (str(datetime.now()), link))
                 continue
 #                raise TypeError('endDate is %s ' % str(endDate))
             brain = catalog(id=contentId)
             item = brain[0].getObject()
-            item.govDepartment = govDepartment
-            item.govBranch = govBranch
-            item.govAddress = govAddress
-            item.contact = contact
-            item.telNo = telNo
-            item.faxNo = faxNo
-            item.emailAddress = emailAddress
-            item.noticeId = noticeId
-            item.noticeName = noticeName
-            item.budget = budget
-            item.bidWay = bidWay
-            item.decideWay = decideWay
-            item.noticeTimes = noticeTimes
-            item.noticeState = noticeState
-            item.startDate = datetime(startDate[0], startDate[1], startDate[2])
-            item.bidDate = datetime(bidDate[0], bidDate[1], bidDate[2], bidDate[3], bidDate[4])
-            item.bidAddress = bidAddress
-            item.bidDeposit = bidDeposit
-            item.documentSendTo = documentSendTo
-            item.companyQualification = companyQualification
-            item.companyAbility = companyAbility
-            item.organizationCode = organizationCode
-            item.noticeUrl = link
+            try:
+                item.govDepartment = govDepartment
+                item.govBranch = govBranch
+                item.govAddress = govAddress
+                item.contact = contact
+                item.telNo = telNo
+                item.faxNo = faxNo
+                item.emailAddress = emailAddress
+                item.noticeId = noticeId
+                item.noticeName = noticeName
+                item.budget = budget
+                item.bidWay = bidWay
+                item.decideWay = decideWay
+                item.noticeTimes = noticeTimes
+                item.noticeState = noticeState
+                item.startDate = datetime(startDate[0], startDate[1], startDate[2])
+                item.bidDate = datetime(bidDate[0], bidDate[1], bidDate[2], bidDate[3], bidDate[4])
+                item.bidAddress = bidAddress
+                item.bidDeposit = bidDeposit
+                item.documentSendTo = documentSendTo
+                item.companyQualification = companyQualification
+                item.companyAbility = companyAbility
+                item.organizationCode = organizationCode
+                item.noticeUrl = link
+            except:
+                writeLog('%s : error, url: %s' % (str(datetime.now()), link))
+                api.content.delete(item)
+                continue
 
             # setting hotPoint, viewPoint, budgetPoint and importantPoint
             if len(organizationCode.split('.')) == 1 and len(organizationCode) < 3:
@@ -219,6 +226,6 @@ class GetGovNotice(BrowserView):
             item.reindexObject(idxs=['exclude_from_nav'])
             add_count += 1
 
-        return writeLog('%s : %s%s\n' % (str(datetime.now()) ,
+        return writeLog('%s : %s%s' % (str(datetime.now()) ,
                                          'OK,this time additional content: ',
                                          add_count,))
