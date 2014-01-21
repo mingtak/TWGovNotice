@@ -5,7 +5,6 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <!-- notheme setting-->
-    <notheme css:if-content="body#plonebrowser" />
     <notheme css:if-content="body.userrole-manager" />
     <notheme if-path="@@manage-viewlets" />
     <notheme if="$ajax_load" />
@@ -59,7 +58,7 @@
 
     <!-- theme setting -->
     <rules> <!--  if-path="/gov_notice"> -->
-      <theme href="testimonials.html" />
+      <theme href="testimonials.html" css:if-content="#visual-portal-wrapper" />
 
       <drop css:content="#socialtools" />
     </rules>  
