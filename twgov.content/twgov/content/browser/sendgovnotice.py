@@ -11,23 +11,40 @@ from plone import api
 #from datetime import datetime
 from DateTime import DateTime
 from email.mime.text import MIMEText
+from Products.CMFCore.utils import getToolByName
+
 
 def writeLog(log):
     with open('/home/plone/yyyyy', 'a') as yyyyy:
-        yyyyy.write(log)
+        yyyyy.write(log + '\n')
 
 
 #發送govnotice 給使用者
 class SendGovNotice(BrowserView):
     def __call__(self):
         #找前12小時
-        start = DateTime() - 1
+        start = DateTime() - 0.5
         now = DateTime()
 
-
         catalog = api.portal.get_tool(name='portal_catalog')
-        users = api.user.get_users()
-        for user in users:
+        #取得plone預設的帳號型態
+        ploneUsers = api.user.get_users()
+        #cs.auth.facebook產生的id，單獨存在acl_users.cs-facebook-users中，使用portal_membership找不出來
+        #使用以下三行撈出facebook型態帳號
+        acl_users = api.portal.get_tool(name='acl_users')
+        cs_facebook_users = getattr(acl_users, 'cs-facebook-users', '')
+        facebookUsers = cs_facebook_users.enumerateUsers()
+
+        #結合plone型態帳號與facebook型態帳號
+        users = list()
+        for fbUser in facebookUsers:
+            users.append(fbUser['id'])
+        for ploneUser in ploneUsers:
+            users.append(unicode(ploneUser.id))
+
+        for userId in users:
+            user = api.user.get(userid=userId)
+            writeLog('%s\n%s\n%s' % (user.emailaddress, 'get user, ', str(hasattr(user,'emailaddress'))))
             if '@' in user.emailaddress and user.checkedregister is True:
                 keywords = (user.keyword1,
                             user.keyword2,
@@ -60,10 +77,11 @@ class SendGovNotice(BrowserView):
 
                 api.portal.send_email(recipient=user.emailaddress,
                                       sender='andy@mingtak.com.tw',
-                                      subject='%s%s%s' % (user.id,
+                                      subject='%s%s%s' % (str(user.getProperty("fullname")),
                                                         '您好，Play公社-政府採購公告：',
                                                         str(DateTime()).split()[0]),
                                       body='%s' % (mimeBody.as_string()))
+                writeLog('%s%s' % ('send mail OK, to ', user.emailaddress))
 #                return
             else:
                 continue
