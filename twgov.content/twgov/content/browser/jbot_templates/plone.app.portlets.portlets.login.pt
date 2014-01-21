@@ -8,6 +8,7 @@
         <span class="portletTopLeft"></span>
 <div>
         <a class="button blue small" href="/@@facebook-login"> <i class="icon-facebook"> </i> 臉書登入</a>
+        <a href="/system/service_doc"><span style="font-size:1.2em; vertical-align:sub">服務說明</span></a>
 </div>
 <p></p>
         <span class="portletTopRight"></span>
