@@ -5341,7 +5341,7 @@ msgstr "審核列表"
 #. Default: "Search"
 #: plone.app.portlets/plone/app/portlets/portlets/search.pt:10
 msgid "box_search"
-msgstr "搜尋"
+msgstr "標案搜尋"
 
 #. Default: "Log in"
 #: plone.app.openid/plone/app/openid/portlets/login.pt:6
@@ -5772,7 +5772,7 @@ msgstr "請留意右上方的功能列選項已有變動，它現在包含個人
 #: CMFPlone/skins/plone_login/logged_out.cpt:28
 #: plone.app.openid/plone/app/openid/skins/ploneopenid/logged_out.cpt:45
 msgid "description_loginagain"
-msgstr "可利用下列連結再次登入。"
+msgstr "您已經登出，稍後將自動轉向網站首頁。"
 
 #. Default: "The left and right portlet slots will now display only those portlets assigned to this content type. Use the up, down, delete and edit links to manage user portlets. Use the drop-down list to add new portlets."
 #: plone.app.portlets/plone/app/portlets/browser/templates/manage-content-type.pt:34
@@ -8711,7 +8711,7 @@ msgstr "繼續"
 #. Default: "Continue to the ${portal_title} home page"
 #: CMFPlone/skins/plone_login/login_success.pt:55
 msgid "label_login_continue_to_home_page"
-msgstr "繼續到 ${portal_title} 首頁"
+msgstr "您現在已登入 ${portal_title} 首頁"
 
 #. Default: "Login Name"
 #: CMFPlone/skins/plone_login/failsafe_login_form.cpt:89
