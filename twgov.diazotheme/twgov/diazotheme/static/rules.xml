@@ -56,6 +56,9 @@
       <!-- 404 not found -->
     <strip css:theme="section#content" css:if-content=".template-default_error_message" />
 
+      <!-- search result page -->
+    <before css:theme-children="aside#sidebar" css:content-children="div#googleAdForSearch" />
+
     <!-- theme setting -->
     <rules> <!--  if-path="/gov_notice"> -->
       <theme href="testimonials.html" css:if-content="#visual-portal-wrapper" />
