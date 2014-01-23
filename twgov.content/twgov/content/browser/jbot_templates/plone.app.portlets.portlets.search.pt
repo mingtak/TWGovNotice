@@ -18,6 +18,7 @@
             tal:define="livesearch view/enable_livesearch;"
             tal:attributes="action view/search_action">
         <div class="LSBox">
+<div class="p66">
           <input class="searchField"
               name="SearchableText"
               type="text"
@@ -29,7 +30,7 @@
               tal:attributes="value request/SearchableText|nothing;
                               class python:livesearch and 'searchField portlet-search-gadget' or 'searchField portlet-search-gadget-nols'"
               />
-          <p></p>
+</div>
           <input class="searchButton button green small"
               type="submit"
               value="Search"
