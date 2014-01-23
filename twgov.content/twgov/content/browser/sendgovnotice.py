@@ -6,7 +6,7 @@ from Products.Five.browser import BrowserView
 #from ..config import TEST_STRING
 #from ..config import NOTICE_KEYWORDS
 from ..config import PORTAL_DIR, SITE_URL
-from ..config import LOG_FILE_PATH
+from ..config import SEND_GOV_NOTICE_LOG_FILE
 from plone import api
 #from random import randrange
 #from datetime import datetime
@@ -17,7 +17,7 @@ from datetime import datetime
 
 
 def writeLog(log):
-    with open(LOG_FILE_PATH, 'a') as logFile:
+    with open(SEND_GOV_NOTICE_LOG_FILE, 'a') as logFile:
         logFile.write(log + '\n')
 
 

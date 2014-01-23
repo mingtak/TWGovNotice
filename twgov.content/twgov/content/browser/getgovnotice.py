@@ -6,14 +6,14 @@ from ..config import GOV_NOTICE_URL
 from ..config import PCC_DOMAIN
 from ..config import TEST_STRING
 from ..config import NOTICE_KEYWORDS
-from ..config import LOG_FILE_PATH
+from ..config import GET_GOV_NOTICE_LOG_FILE
 from plone import api
 from random import random, choice, randrange
 from datetime import datetime
 
 
 def writeLog(log):
-    with open(LOG_FILE_PATH, 'a') as logFile:
+    with open(GET_GOV_NOTICE_LOG_FILE, 'a') as logFile:
         logFile.write('%s\n' % log)
 
 class GetGovNotice(BrowserView):
