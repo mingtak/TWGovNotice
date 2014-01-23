@@ -26,4 +26,10 @@
     permission="cmf.ManagePortal"
     class=".checkcode.CheckCode" />
 
+  <browser:page
+    for="*"
+    name="writelog"
+    permission="zope2.View"
+    class=".writelog.WriteLog" />
+
 </configure>
