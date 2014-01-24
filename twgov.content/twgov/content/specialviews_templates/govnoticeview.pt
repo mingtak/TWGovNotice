@@ -57,10 +57,10 @@
 
   <p>
     <a tal:condition="previous"
-       tal:attributes="href string:${request/URL0}?start:int=${previous/first}"
+       tal:attributes="href string:${request/BASE2}?start:int=${previous/first}"
        href="previous_url"> 上一頁 </a>
     <a tal:condition="next"
-       tal:attributes="href string:${request/URL0}?start:int=${next/first}"
+       tal:attributes="href string:${request/BASE2}?start:int=${next/first}"
        href="next_url"> 下一頁 </a>
   </p>
 

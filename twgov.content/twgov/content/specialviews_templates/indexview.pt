@@ -19,6 +19,19 @@
 <tal:setStartDate define="startDate python:3">
 
 <!-- 熱門公告開始 -->
+
+  <!-- google ad 開始 -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- 728_90超級橫幅 -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-9621066722313042"
+       data-ad-slot="5112885076"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  <!-- google ad 結束 -->
+
 <div class="p97 right widget">
   <p></p>
   <h2>熱門公告</h2>
@@ -47,6 +60,12 @@
       </div>
     </div>
   </tal:hotPoint>
+</div>
+<!-- 熱門公告結束 -->
+
+<!-- 觀注公告開始 -->
+
+  <!-- google ad 開始 -->
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- 728_90超級橫幅 -->
   <ins class="adsbygoogle"
@@ -56,10 +75,8 @@
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
-</div>
-<!-- 熱門公告結束 -->
+  <!-- google ad 結束 -->
 
-<!-- 觀注公告開始 -->
 <div class="p97 right widget">
   <p></p>
   <h2>本日最觀注</h2>
@@ -88,6 +105,12 @@
       </div>
     </div>
   </tal:viewPoint>
+</div>
+<!-- 觀注公告結束 -->
+
+<!-- 巨額公告開始 -->
+
+  <!-- google ad 開始 -->
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- 728_90超級橫幅 -->
   <ins class="adsbygoogle"
@@ -97,10 +120,8 @@
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
-</div>
-<!-- 觀注公告結束 -->
+  <!-- google ad 結束 -->
 
-<!-- 巨額公告開始 -->
 <div class="p97 right widget">
   <p></p>
   <h2>本日最巨額</h2>
@@ -129,15 +150,6 @@
       </div>
     </div>
   </tal:budgetPoint>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- 728_90超級橫幅 -->
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:728px;height:90px"
-       data-ad-client="ca-pub-9621066722313042"
-       data-ad-slot="5112885076"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
 </div>
 <!-- 巨額公告結束 -->
 
