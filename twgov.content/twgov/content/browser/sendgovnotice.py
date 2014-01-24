@@ -108,7 +108,8 @@ class SendGovNotice(BrowserView):
                                                         str(DateTime()).split()[0]),
                                       body='%s' % (mimeBody.as_string()))
                 writeLog('%s, send mail OK, to %s' % (str(datetime.now()), user.emailaddress))
-                writeLog('keywords is => %s' % str(keywords))
+                writeLog('keywords is => %s, %s, %s, %s, %s' %
+                         (keywords[0], keywords[1], keywords[2], keywords[3], keywords[4] ))
 #                return
             else:
                 continue
