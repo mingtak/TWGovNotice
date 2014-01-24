@@ -71,3 +71,9 @@ class GovNoticeView(grok.View):
     grok.require('zope2.View')
     grok.name('govnoticeview')
 
+class NewsView(grok.View):
+    """ sample view class """
+
+    grok.context(ISpecialViews)
+    grok.require('zope2.View')
+    grok.name('newsview')
