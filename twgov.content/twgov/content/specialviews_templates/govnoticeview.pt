@@ -26,10 +26,8 @@
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 <!-- google ad end -->
-
-    <h2>
-        政府採購公告列表
-    </h2>
+<p></p>
+    <h2 class="sub-heading-upper" style="font-size:1.6em">政府採購公告列表</h2>
 
 
   <div tal:define="catalog python:here.portal_catalog;
