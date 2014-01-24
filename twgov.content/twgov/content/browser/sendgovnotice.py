@@ -70,20 +70,45 @@ class SendGovNotice(BrowserView):
                                 '</a><span>：',
                                 brain.govDepartment.encode('utf-8'),
                                 '</span></li>',)
-
-                mimeBody = MIMEText('%s%s%s' % (
-                    '<html><body><h2>今日最新-Play公社,政府採購報馬仔</h2><ul>',
-                    htmlString,
-                    '</ul></body></html>',),
-                    'html', 'utf-8')
+#                import pdb; pdb.set_trace()
+                if htmlString == str():
+                    mimeBody = MIMEText(
+                        '''
+                        <html><body><h2>今日最新-Play公社,政府採購報馬仔</h2><div>
+                        很抱歉，目前沒有您關心的標案內容,<br /><br />
+                        您也可以<a href="http://gov.playgroup.com.tw/keywords_setting">前往網站更改設定</a>
+                        </div></body></html>
+                        '''
+                        , 'html', 'utf-8')
+                else:
+                    mimeBody = MIMEText('%s%s / %s / %s / %s / %s%s%s%s' % (
+                        '''
+                        <html><body><h2>今日最新-Play公社,政府採購報馬仔</h2><div>
+                          <p>您目前所設定的追蹤關鍵字為：<p><span>
+                        '''
+                        , keywords[0],
+                        keywords[1],
+                        keywords[2],
+                        keywords[3],
+                        keywords[4],
+                        '</span></div><ul>',
+                        htmlString,
+                        '''
+                        </ul>
+                        <p>你也可以
+                          <a href="http://gov.playgroup.com.tw/keywords_setting">前往網站修改設定</a>
+                        </p></body></html>
+                        ''',),
+                        'html', 'utf-8')
 
                 api.portal.send_email(recipient=user.emailaddress,
-                                      sender='andy@mingtak.com.tw',
+                                      sender='service@mingtak.com.tw',
                                       subject='%s%s%s' % (str(user.getProperty("fullname")),
                                                         '您好，Play公社-政府採購公告：',
                                                         str(DateTime()).split()[0]),
                                       body='%s' % (mimeBody.as_string()))
                 writeLog('%s, send mail OK, to %s' % (str(datetime.now()), user.emailaddress))
+                writeLog('keywords is => %s' % str(keywords))
 #                return
             else:
                 continue
