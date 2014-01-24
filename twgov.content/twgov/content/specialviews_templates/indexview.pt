@@ -21,15 +21,19 @@
 <!-- 熱門公告開始 -->
 
   <!-- google ad 開始 -->
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- 728_90超級橫幅 -->
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:728px;height:90px"
-       data-ad-client="ca-pub-9621066722313042"
-       data-ad-slot="5112885076"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+  <tal:isPc condition="python:False if 'iPad' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'Android' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'iPhone' in context.REQUEST['HTTP_USER_AGENT'] else True">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 728_90超級橫幅 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-9621066722313042"
+         data-ad-slot="5112885076"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </tal:isPc>
   <!-- google ad 結束 -->
 
 <div class="p97 right widget">
@@ -66,15 +70,33 @@
 <!-- 觀注公告開始 -->
 
   <!-- google ad 開始 -->
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- 728_90超級橫幅 -->
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:728px;height:90px"
-       data-ad-client="ca-pub-9621066722313042"
-       data-ad-slot="5112885076"></ins>
-  <script>
+  <tal:isPc condition="python:False if 'iPad' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'Android' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'iPhone' in context.REQUEST['HTTP_USER_AGENT'] else True">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 728_90超級橫幅 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-9621066722313042"
+         data-ad-slot="5112885076"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </tal:isPc>
+
+  <tal:isMobile condition="python:True if 'iPad' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'Android' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'iPhone' in context.REQUEST['HTTP_USER_AGENT'] else False">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 336X280大矩形 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:336px;height:280px"
+         data-ad-client="ca-pub-9621066722313042"
+         data-ad-slot="9625513874"></ins>
+    <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+    </script>
+  </tal:isMobile>
   <!-- google ad 結束 -->
 
 <div class="p97 right widget">
@@ -111,15 +133,33 @@
 <!-- 巨額公告開始 -->
 
   <!-- google ad 開始 -->
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- 728_90超級橫幅 -->
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:728px;height:90px"
-       data-ad-client="ca-pub-9621066722313042"
-       data-ad-slot="5112885076"></ins>
-  <script>
+  <tal:isPc condition="python:False if 'iPad' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'Android' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'iPhone' in context.REQUEST['HTTP_USER_AGENT'] else True">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 728_90超級橫幅 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-9621066722313042"
+         data-ad-slot="5112885076"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </tal:isPc>
+
+  <tal:isMobile condition="python:True if 'iPad' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'Android' in context.REQUEST['HTTP_USER_AGENT'] or
+                                         'iPhone' in context.REQUEST['HTTP_USER_AGENT'] else False">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 336X280大矩形 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:336px;height:280px"
+         data-ad-client="ca-pub-9621066722313042"
+         data-ad-slot="9625513874"></ins>
+    <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+    </script>
+  </tal:isMobile>
   <!-- google ad 結束 -->
 
 <div class="p97 right widget">
