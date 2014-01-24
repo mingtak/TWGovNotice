@@ -218,7 +218,7 @@ class GetGovNotice(BrowserView):
             else:
                 item.budgetPoint = 45 + (10 * random() * int(choice(['-1' ,'1'])))
 
-            item.hotPoint = (item.viewPoint * 0.35) + (item.budgetPoint * 0.65)
+            item.hotPoint = (item.viewPoint * 0.5) + (item.budgetPoint * 0.5)
             item.importantPoint = (item.viewPoint + item.budgetPoint + item.hotPoint) / 3
 
             # exclude from nav and reindex object
