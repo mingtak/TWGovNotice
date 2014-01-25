@@ -2,6 +2,7 @@
      id="portal-footer">
    <p class="left">
       <a href="http://www.mingtak.com.tw/" target=_blank>銘啟科技有限公司</a> Copyright © <span>2010-<tal:year tal:content="view/year" /></span> Mingtak Co., Ltd. All Rights Reserved. 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000259059'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000259059%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
    </p>
    <p class="right">業務專線：02-2897-3942</p>
 
