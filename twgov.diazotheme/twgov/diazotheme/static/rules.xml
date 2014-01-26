@@ -24,6 +24,7 @@
     <replace css:theme="html head title" css:content="html head title" />
     <merge attributes="class" css:theme="body" css:content="body" />
     <replace css:theme-children="#content" css:content-children="#content" />
+    <before css:theme-children="html head" css:content="head meta" />
 
 
       <!-- right portlet column -->
@@ -49,6 +50,7 @@
     <drop css:theme="footer div.widgets" />
     <drop css:content="h1.documentFirstHeading" />
     <drop css:content="#plone-document-byline" />
+    <drop css:content="div.documentDescription" />
 
       <!-- portal-footer -->
     <replace css:theme="footer div.bottom" css:content="#portal-footer" />
