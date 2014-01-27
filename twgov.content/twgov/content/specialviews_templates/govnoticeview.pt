@@ -48,7 +48,9 @@
   <tal:item repeat="result batch">
     <tal:date define="date result/CreationDate">
          <li><strong tal:content="string:${result/govDepartment}："></strong>
-             <a tal:content="result/Title" tal:attributes="href result/getURL">govDepartment goes here</a>
+             <a tal:content="result/Title"
+                tal:attributes="href result/getURL;
+                                title result/Description">govDepartment goes here</a>
              <span tal:content="python:'(%s)' % (str(date).split('T')[0])"></span>
          </li>
 
