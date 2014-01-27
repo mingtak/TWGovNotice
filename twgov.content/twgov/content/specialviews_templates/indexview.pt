@@ -38,7 +38,7 @@
 
 <div class="p97 right widget">
   <p></p>
-  <h2>熱門公告</h2>
+  <h2 class="sub-heading-upper" style="font-size:1.6em">熱門公告</h2>
   <tal:hotPoint define="start python:modules['DateTime'].DateTime() - startDate;
                    now python:modules['DateTime'].DateTime();
                    dateRange python:{'query':(start, now), 'range': 'min:max'};
@@ -50,7 +50,9 @@
     <div class="p100">
       <div class="p50">
         <h5 class="smaller-margin"><span class="square-icons red"><i class="icon-edit"></i></span>
-          <a tal:attributes="href brain/getURL" tal:content="python:'%s%s' % (brain.Title.decode('utf-8')[:14], u'...')"> notice title
+          <a tal:attributes="href brain/getURL;
+                             title brain/Title"
+             tal:content="python:'%s%s' % (brain.Title.decode('utf-8')[:14], u'...')"> notice title
           </a>
         </h5>
         <p><span tal:content="structure python:'%s%s%s' % (u'<strong>招標單位:</strong>', brain.govDepartment[:14], '...')"> gov department </span><br />
@@ -101,7 +103,7 @@
 
 <div class="p97 right widget">
   <p></p>
-  <h2>本日最觀注</h2>
+  <h2 class="sub-heading-upper" style="font-size:1.6em">本日最觀注</h2>
   <tal:viewPoint define="start python:modules['DateTime'].DateTime() - startDate;
                    now python:modules['DateTime'].DateTime();
                    dateRange python:{'query':(start, now), 'range': 'min:max'};
@@ -113,7 +115,9 @@
     <div class="p100">
       <div class="p50">
         <h5 class="smaller-margin"><span class="square-icons green"><i class="icon-legal"></i></span>
-          <a tal:attributes="href brain/getURL" tal:content="python:'%s%s' % (brain.Title.decode('utf-8')[:14], u'...')"> notice title
+          <a tal:attributes="href brain/getURL;
+                             title brain/Title"
+             tal:content="python:'%s%s' % (brain.Title.decode('utf-8')[:14], u'...')"> notice title
           </a>
         </h5>
         <p><span tal:content="structure python:'%s%s%s' % (u'<strong>招標單位:</strong>', brain.govDepartment[:14], '...')"> gov department </span><br />
@@ -164,7 +168,7 @@
 
 <div class="p97 right widget">
   <p></p>
-  <h2>本日最巨額</h2>
+  <h2 class="sub-heading-upper" style="font-size:1.6em">本日最巨額</h2>
   <tal:budgetPoint define="start python:modules['DateTime'].DateTime() - startDate;
                    now python:modules['DateTime'].DateTime();
                    dateRange python:{'query':(start, now), 'range': 'min:max'};
@@ -176,7 +180,9 @@
     <div class="p100">
       <div class="p50">
         <h5 class="smaller-margin"><span class="square-icons blue"><i class="icon-globe"></i></span>
-          <a tal:attributes="href brain/getURL" tal:content="python:'%s%s' % (brain.Title.decode('utf-8')[:14], u'...')"> notice title
+          <a tal:attributes="href brain/getURL;
+                             title brain/Title"
+             tal:content="python:'%s%s' % (brain.Title.decode('utf-8')[:14], u'...')"> notice title
           </a>
         </h5>
         <p><span tal:content="structure python:'%s%s%s' % (u'<strong>招標單位:</strong>', brain.govDepartment[:14], '...')"> gov department </span><br />
