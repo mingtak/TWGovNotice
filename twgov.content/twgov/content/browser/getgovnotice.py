@@ -222,13 +222,13 @@ class GetGovNotice(BrowserView):
             item.importantPoint = (item.viewPoint + item.budgetPoint + item.hotPoint) / 3
 
             # setup metadate
-            item.setSubject([item.noticeName, item.bidWay, item.decideWay, '政府採購', 'Play公社', '標案', '投標'])
+            item.setSubject([item.noticeName, item.bidWay, item.decideWay, '政府採購', 'Play公社', '標案', '投標', '共契', '共同供應契約', '採購'])
             item.setDescription(u'%s公告，本案採購名稱：「%s」，招標方式為%s，並以%s決標' %
                                 (item.govDepartment, item.noticeName, item.bidWay, item.decideWay))
 
             # exclude from nav and reindex object
             item.exclude_from_nav = True
-            item.reindexObject(idxs=['exclude_from_nav'])
+            item.reindexObject()
             add_count += 1
 
         return writeLog('%s : %s%s' % (str(datetime.now()) ,
