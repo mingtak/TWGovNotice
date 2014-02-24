@@ -10,14 +10,15 @@ from ..config import GET_GOV_NOTICE_LOG_FILE
 from plone import api
 from random import random, choice, randrange
 from datetime import datetime
+from mmseg import seg_txt
+from Products.CMFPlone.utils import safe_unicode
+import logging
 
-
-def writeLog(log):
-    with open(GET_GOV_NOTICE_LOG_FILE, 'a') as logFile:
-        logFile.write('%s\n' % log)
 
 class GetGovNotice(BrowserView):
     def __call__(self):
+        logger = logging.getLogger(".getgovnotice.GetGovNotice")
+        segLogger = logging.getLogger("分詞結果")
         #取得公告首頁
         try:
             getHtml = urllib2.urlopen(GOV_NOTICE_URL)
@@ -153,7 +154,7 @@ class GetGovNotice(BrowserView):
                                    id=contentId,
                                    endDate=datetime(endDate[0], endDate[1], endDate[2], endDate[3], endDate[4]))
             except:
-                writeLog('%s, error : create content fail, %s' % (str(datetime.now()), link))
+                logger.error(' : create content fail, %s' % link)
                 continue
 #                raise TypeError('endDate is %s ' % str(endDate))
             brain = catalog(id=contentId)
@@ -183,7 +184,7 @@ class GetGovNotice(BrowserView):
                 item.organizationCode = organizationCode
                 item.noticeUrl = link
             except:
-                writeLog('%s : error, url: %s' % (str(datetime.now()), link))
+                logger.error(' url: %s' % link)
                 api.content.delete(item)
                 continue
 
@@ -222,7 +223,15 @@ class GetGovNotice(BrowserView):
             item.importantPoint = (item.viewPoint + item.budgetPoint + item.hotPoint) / 3
 
             # setup metadate
-            item.setSubject([item.noticeName, item.bidWay, item.decideWay, '政府採購', 'Play公社', '標案', '投標', '共契', '共同供應契約', '採購'])
+            resultsFromNoticeName, subjectFromNoticeName = str(), list()
+            for seg in seg_txt(safe_unicode(item.noticeName).encode('utf-8')):
+                resultsFromNoticeName += "'%s'," % seg
+                if len(safe_unicode(seg)) > 2:
+                    subjectFromNoticeName.append(seg)
+            #輸出分詞結果，供人工分析
+            segLogger.info(resultsFromNoticeName)
+            item.setSubject(subjectFromNoticeName + [item.noticeName, item.bidWay, item.decideWay, '政府採購',
+                                                     'Play公社', '標案', '投標', '共契', '共同供應契約', '採購'])
             item.setDescription(u'%s公告，本案採購名稱：「%s」，招標方式為%s，並以%s決標' %
                                 (item.govDepartment, item.noticeName, item.bidWay, item.decideWay))
 
@@ -231,6 +240,4 @@ class GetGovNotice(BrowserView):
             item.reindexObject()
             add_count += 1
 
-        return writeLog('%s : %s%s' % (str(datetime.now()) ,
-                                         'OK,this time additional content: ',
-                                         add_count,))
+        return logger.info(' : OK,this time additional content: %s' % add_count)

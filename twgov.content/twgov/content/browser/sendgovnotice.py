@@ -76,7 +76,12 @@ class SendGovNotice(BrowserView):
                         '''
                         <html><body><h2>今日最新-Play公社,政府採購報馬仔</h2><div>
                         很抱歉，目前沒有您關心的標案內容,<br /><br />
+                        <p>
                         您也可以<a href="http://gov.playgroup.com.tw/keywords_setting">前往網站更改設定</a>
+                        </p>
+                        <p>若您認為收到這封信件是錯誤的，請填寫
+                          <a href="http://gov.playgroup.com.tw/system/6211898175338a34">申訴表單</a>，我們將儘速為您處理.
+                        </p>
                         </div></body></html>
                         '''
                         , 'html', 'utf-8')
@@ -97,6 +102,10 @@ class SendGovNotice(BrowserView):
                         </ul>
                         <p>你也可以
                           <a href="http://gov.playgroup.com.tw/keywords_setting">前往網站修改設定</a>
+                        </p>
+                        <p>看到喜歡的廣告點一下，是我們提供服務的最大動力.--Play公社感謝您的支持--</p>
+                        <p>若您認為收到這封信件是錯誤的，請填寫
+                          <a href="http://gov.playgroup.com.tw/system/6211898175338a34">申訴表單</a>，我們將儘速為您處理.
                         </p></body></html>
                         ''',),
                         'html', 'utf-8')
