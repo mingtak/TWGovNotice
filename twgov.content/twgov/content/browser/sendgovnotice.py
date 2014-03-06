@@ -14,11 +14,11 @@ from DateTime import DateTime
 from email.mime.text import MIMEText
 from Products.CMFCore.utils import getToolByName
 from datetime import datetime
+from Products.CMFPlone.utils import safe_unicode
+import logging
 
 
-def writeLog(log):
-    with open(SEND_GOV_NOTICE_LOG_FILE, 'a') as logFile:
-        logFile.write(log + '\n')
+logger = logging.getLogger(".sendgovnotice.SendGovNotice")
 
 
 #發送govnotice 給使用者
@@ -46,7 +46,7 @@ class SendGovNotice(BrowserView):
 
         for userId in users:
             user = api.user.get(userid=userId)
-#            writeLog('%s\n%s\n%s' % (user.emailaddress, 'get user, ', str(hasattr(user,'emailaddress'))))
+#            logger.info('%s\n%s\n%s' % (user.emailaddress, 'get user, ', str(hasattr(user,'emailaddress'))))
             if '@' in user.emailaddress and user.checkedregister is True:
                 keywords = (user.keyword1,
                             user.keyword2,
@@ -58,9 +58,9 @@ class SendGovNotice(BrowserView):
                     if len(keyword.split()) == 0:
                         continue
                     dateRange = {'query':(start,now), 'range': 'min:max'}
-                    brains = catalog({'Title':keyword, 'created':dateRange}, sort_on='created')
+                    brains = catalog({'portal_type':'twgov.content.govnotice', 'Title':keyword, 'created':dateRange}, sort_on='created')
                     for brain in brains:
-                        if brain.noticeName not in htmlString.decode('utf-8'):
+                        if safe_unicode(brain.noticeName) not in safe_unicode(htmlString):
                             url = brain.getPath().replace(PORTAL_DIR, SITE_URL)
                             htmlString += '%s%s%s%s%s%s%s' % (
                                 '<li><a href="',
@@ -116,8 +116,8 @@ class SendGovNotice(BrowserView):
                                                         '您好，Play公社-政府採購公告：',
                                                         str(DateTime()).split()[0]),
                                       body='%s' % (mimeBody.as_string()))
-                writeLog('%s, send mail OK, to %s' % (str(datetime.now()), user.emailaddress))
-                writeLog('keywords is => %s, %s, %s, %s, %s' %
+                logger.info('%s, send mail OK, to %s' % (str(datetime.now()), user.emailaddress))
+                logger.info('keywords is => %s, %s, %s, %s, %s' %
                          (keywords[0], keywords[1], keywords[2], keywords[3], keywords[4] ))
 #                return
             else:

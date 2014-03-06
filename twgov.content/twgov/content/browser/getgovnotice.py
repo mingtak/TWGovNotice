@@ -13,11 +13,12 @@ from datetime import datetime
 from mmseg import seg_txt
 from Products.CMFPlone.utils import safe_unicode
 import logging
-
+import scseg
 
 class GetGovNotice(BrowserView):
     def __call__(self):
         logger = logging.getLogger(".getgovnotice.GetGovNotice")
+        titleLogger = logging.getLogger("分詞案名")
         segLogger = logging.getLogger("分詞結果")
         #取得公告首頁
         try:
@@ -224,14 +225,16 @@ class GetGovNotice(BrowserView):
 
             # setup metadate
             resultsFromNoticeName, subjectFromNoticeName = str(), list()
-            for seg in seg_txt(safe_unicode(item.noticeName).encode('utf-8')):
+            for seg in scseg.seg_keywords(safe_unicode(item.noticeName)):
+#            for seg in seg_txt(safe_unicode(item.noticeName).encode('utf-8')):
                 resultsFromNoticeName += "'%s'," % seg
                 if len(safe_unicode(seg)) > 2:
                     subjectFromNoticeName.append(seg)
             #輸出分詞結果，供人工分析
-            segLogger.info(resultsFromNoticeName)
-            item.setSubject(subjectFromNoticeName + [item.noticeName, item.bidWay, item.decideWay, '政府採購',
-                                                     'Play公社', '標案', '投標', '共契', '共同供應契約', '採購'])
+            titleLogger.info(item.noticeName.encode('utf-8'))
+            segLogger.info(resultsFromNoticeName.encode('utf-8'))
+            item.setSubject(subjectFromNoticeName + [item.noticeName, '政府採購', 'Play公社', '標案',
+                                                     '投標', '共契', '共同供應契約', '招標公告'])
             item.setDescription(u'%s公告，本案採購名稱：「%s」，招標方式為%s，並以%s決標' %
                                 (item.govDepartment, item.noticeName, item.bidWay, item.decideWay))
 

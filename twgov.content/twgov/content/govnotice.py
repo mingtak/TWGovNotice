@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import logging
 from five import grok
 
 from z3c.form import group, field
@@ -24,8 +24,27 @@ from twgov.content import MessageFactory as _
 from plone.indexer import indexer
 from collective import dexteritytextindexer
 
+from Acquisition import aq_inner
+from zope.component import getUtility
+from zope.intid.interfaces import IIntIds
+from zope.security import checkPermission
+from zc.relation.interfaces import ICatalog
 
-# Interface class; used to define content-type schema.
+
+def back_references(source_object, attribute_name):
+    """ Return back references from source object on specified attribute_name """
+    catalog = getUtility(ICatalog)
+    intids = getUtility(IIntIds)
+    result = []
+    for rel in catalog.findRelations(
+                            dict(to_id=intids.getId(aq_inner(source_object)),
+                                 from_attribute=attribute_name)
+                            ):
+        obj = intids.queryObject(rel.from_id)
+        if obj is not None and checkPermission('zope2.View', obj):
+            result.append(obj)
+    return result
+
 
 class IgovNotice(form.Schema, IImageScaleTraversable):
     """
@@ -193,14 +212,26 @@ class govNotice(Container):
 
 
 class SampleView(grok.View):
-    """ sample view class """
-
     grok.context(IgovNotice)
     grok.require('zope2.View')
-
     grok.name('view')
-
-    # Add view methods here
+    '''
+    def findBackReferences(self):
+        backReferences = list()
+        if self.context.noticeRelation is None:
+            return backReferences
+        for i in range(len(self.context.noticeRelation)):
+            backReferences += back_references(self.context.noticeRelation[i].to_object, 'noticeRelation')
+        backReferences = list(set(backReferences))
+        for i in range(len(backReferences)-1, -1, -1):
+            if self.context == backReferences[i]:
+                backReferences.pop(i)
+        return backReferences
+    '''
+    def findBackReferences(self):
+        logger = logging.getLogger("findBackReferences")
+        backReferences = back_references(self.context, 'noticeRelation')
+        return backReferences
 
 
 @indexer(IgovNotice)

@@ -28,8 +28,14 @@
 
   <browser:page
     for="*"
-    name="writelog"
-    permission="zope2.View"
-    class=".writelog.WriteLog" />
+    name="get_relation_notice"
+    permission="cmf.ManagePortal"
+    class=".getRelationNotice.GetRelationNotice" />
+
+  <browser:page
+    for="*"
+    name="testfunction"
+    permission="cmf.ManagePortal"
+    class=".testfunction.TestFunction" />
 
 </configure>

@@ -71,8 +71,17 @@
       <div class="tab tab7" style="display: none;">
 
         <strong></strong>
-	<p><strong>標案動態：</strong><span>尚無動態<span></p>
-	<p style="padding-left:5em" tal:condition="python:False">尚無動態</p>
+
+<tal:back_ref define="back_refs python:view.findBackReferences()">
+	<p><strong>標案動態：</strong>
+           <span tal:condition="python:True if back_refs == [] else False"">尚無動態</span>
+        <tal:hrefs repeat="back_ref back_refs">
+           <a tal:attributes="href back_ref/absolute_url" tal:content="back_ref/Title"></a>
+        </tal:hrefs>
+        </p>
+	<p style="padding-left:5em" tal:condition="python:False">尚無動態2</p>
+</tal:back_ref>
+
 	<p><strong>標案指標：</strong></p>
 	<div class="p66 left" >
           <div class="progress progress-striped active" style="font-size:2em;valign:center">
