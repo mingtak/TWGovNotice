@@ -17,11 +17,20 @@
 
 <div class="p97 right">
 
-    <h2 tal:content="context/Title">
-        建構中，敬請期待...
-    </h2>
+<tal:script define="script python:'$(document).ready(function(){$(\'#trace_notice\').click(function(){$(\'#trace_notice_text\').load(\'/twGovBidding/trace_notice?id=%s\');;});;});;' % context.id">
+<script type="text/javascript" async="true" defer="true" tal:content="script">
+</script>
+    <tal:checkTraced define="checkTraced context/check_traced">
+      <h2 tal:condition="python:not context.REQUEST.AUTHENTICATED_USER.has_role('Anonymous')"
+          tal:content="structure python:'%s <a id=\'trace_notice\' style=\'font-size:0.5em\'><span id=\'trace_notice_text\'>%s</span></a>' %
+                                             (context.Title(), checkTraced)"></h2>
+      <h2 tal:condition="python:context.REQUEST.AUTHENTICATED_USER.has_role('Anonymous')"
+          tal:content="structure python:'%s <a href=\'/@@facebook-login\' id=\'trace_notice\' style=\'font-size:0.5em\'><span id=\'trace_notice_text\'>%s</span></a>' %
+                                             (context.Title(), checkTraced)"></h2>
+    </tal:checkTraced>
+</tal:script>
 
-    <div class="horizontal-tabs  tabs-wrapper">
+    <div class="horizontal-tabs tabs-wrapper p66">
 
       <ul class="tabs">
         <li class="active"><a id="tab4" href="#">單位資訊</a></li>
@@ -109,10 +118,35 @@
             </div>
           </div>
         </div>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<!--        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+-->
       </div>
 
     </div>
+
+<!-- 興趣列表 -->
+<tal:interest define="catalog python:context.portal_catalog;
+                      subject context/subject;
+                      len python:len(subject);
+                      brain python:catalog(portal_type='twgov.content.govnotice', Subject=subject[-1].encode('utf8'),
+                                           sort_on='created', sort_order='descending')[:10]
+                                   if len < 3 else
+                                   (catalog(portal_type='twgov.content.govnotice', Subject=subject[-1].encode('utf8'),
+                                           sort_on='created', sort_order='descending')[:10] +
+                                    catalog(portal_type='twgov.content.govnotice', Subject=subject[-2].encode('utf8'),
+                                           sort_on='created', sort_order='descending')[:10]);
+                      tempVar python:modules['random'].shuffle(brain);
+                      brain python:list(brain)[:6];">
+<div class="p40 greybox">
+  <h3 class="sub-heading-upper">您可能會有興趣：</h3>
+  <ul class="arrow quote">
+    <li tal:repeat="item brain">
+      <a tal:content="item/Title" tal:attributes="href item/getURL">興趣列表</a>
+    </li>
+<br/>
+  </ul>
+</div>
+</tal:interest>
 
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">

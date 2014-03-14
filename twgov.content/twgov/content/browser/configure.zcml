@@ -34,8 +34,38 @@
 
   <browser:page
     for="*"
-    name="testfunction"
+    name="trace_notice"
+    permission="zope2.View"
+    class=".tracenotice.TraceNotice" />
+
+  <browser:page
+    for="*"
+    name="check_traced"
+    permission="zope2.View"
+    class=".tracenotice.CheckTraced" />
+
+  <browser:page
+    for="*"
+    name="send_relation_item"
     permission="cmf.ManagePortal"
-    class=".testfunction.TestFunction" />
+    class=".sendrelationitem.SendRelationItem" />
+
+  <browser:page
+    for="*"
+    name="govNoticeSitemapMingtak"
+    permission="zope2.View"
+    class=".sitemap.Sitemap1" />
+
+  <browser:page
+    for="*"
+    name="relationNoticeSitemapMingtak"
+    permission="zope2.View"
+    class=".sitemap.Sitemap2" />
+
+  <browser:page
+    for="*"
+    name="documentMingtak"
+    permission="zope2.View"
+    class=".sitemap.Sitemap3" />
 
 </configure>

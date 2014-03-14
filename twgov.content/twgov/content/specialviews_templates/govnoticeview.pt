@@ -35,7 +35,7 @@
 
 
   <div tal:define="catalog python:here.portal_catalog;
-                   results  python:catalog(portal_type='twgov.content.govnotice', sort_on='created', sort_order='descending');
+                   results python:catalog(portal_type='twgov.content.govnotice', sort_on='created', sort_order='descending')[:5000];
                    start request/start|python:0;
                    batch python:modules['ZTUtils'].Batch(results, 
                                                           size=20, 

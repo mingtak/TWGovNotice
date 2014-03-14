@@ -7,4 +7,6 @@
   <property name="keyword3" type="string"></property>
   <property name="keyword4" type="string"></property>
   <property name="keyword5" type="string"></property>
+  <property name="keyword5" type="string"></property>
+  <property name="keywords" type="string"></property>
 </object>

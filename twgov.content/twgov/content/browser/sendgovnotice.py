@@ -116,7 +116,7 @@ class SendGovNotice(BrowserView):
                                                         '您好，Play公社-政府採購公告：',
                                                         str(DateTime()).split()[0]),
                                       body='%s' % (mimeBody.as_string()))
-                logger.info('%s, send mail OK, to %s' % (str(datetime.now()), user.emailaddress))
+                logger.info('send mail OK, to %s' % (user.emailaddress))
                 logger.info('keywords is => %s, %s, %s, %s, %s' %
                          (keywords[0], keywords[1], keywords[2], keywords[3], keywords[4] ))
 #                return

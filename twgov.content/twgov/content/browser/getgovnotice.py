@@ -14,6 +14,8 @@ from mmseg import seg_txt
 from Products.CMFPlone.utils import safe_unicode
 import logging
 import scseg
+import re
+
 
 class GetGovNotice(BrowserView):
     def __call__(self):
@@ -226,15 +228,17 @@ class GetGovNotice(BrowserView):
             # setup metadate
             resultsFromNoticeName, subjectFromNoticeName = str(), list()
             for seg in scseg.seg_keywords(safe_unicode(item.noticeName)):
-#            for seg in seg_txt(safe_unicode(item.noticeName).encode('utf-8')):
+                #去除含數字的seg
+                if re.search('\d', seg):
+                    continue
                 resultsFromNoticeName += "'%s'," % seg
                 if len(safe_unicode(seg)) > 2:
                     subjectFromNoticeName.append(seg)
             #輸出分詞結果，供人工分析
             titleLogger.info(item.noticeName.encode('utf-8'))
             segLogger.info(resultsFromNoticeName.encode('utf-8'))
-            item.setSubject(subjectFromNoticeName + [item.noticeName, '政府採購', 'Play公社', '標案',
-                                                     '投標', '共契', '共同供應契約', '招標公告'])
+            randomKeyword = choice(['政府採購', 'Play公社', '標案', '投標', '共契', '共同供應契約', '招標公告'])
+            item.setSubject([item.noticeName, randomKeyword] + subjectFromNoticeName)
             item.setDescription(u'%s公告，本案採購名稱：「%s」，招標方式為%s，並以%s決標' %
                                 (item.govDepartment, item.noticeName, item.bidWay, item.decideWay))
 
