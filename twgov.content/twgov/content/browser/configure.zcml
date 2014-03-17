@@ -68,4 +68,14 @@
     permission="zope2.View"
     class=".sitemap.Sitemap3" />
 
+<!--
+測試用，平常不開
+  <browser:page
+    for="*"
+    name="testFunction"
+    permission="cmf.ManagePortal"
+    class=".testfunction.TestFunction" />
+-->
+
+
 </configure>

@@ -48,15 +48,16 @@ class SendGovNotice(BrowserView):
             user = api.user.get(userid=userId)
 #            logger.info('%s\n%s\n%s' % (user.emailaddress, 'get user, ', str(hasattr(user,'emailaddress'))))
             if '@' in user.emailaddress and user.checkedregister is True:
-                keywords = (user.keyword1,
-                            user.keyword2,
-                            user.keyword3,
-                            user.keyword4,
-                            user.keyword5,)
-                htmlString = str()
-                for keyword in keywords:
-                    if len(keyword.split()) == 0:
+                keywords = []
+                userKeywords = getattr(user, 'keywords', '')
+                for keyword in userKeywords.split('\n'):
+                    if len(keyword.strip()) == 0:
                         continue
+                    keywords.append(keyword.strip())
+                htmlString = str()
+                keywordsList = ''
+                for keyword in keywords:
+                    keywordsList += ' %s /' % keyword
                     dateRange = {'query':(start,now), 'range': 'min:max'}
                     brains = catalog({'portal_type':'twgov.content.govnotice', 'Title':keyword, 'created':dateRange}, sort_on='created')
                     for brain in brains:
@@ -86,16 +87,12 @@ class SendGovNotice(BrowserView):
                         '''
                         , 'html', 'utf-8')
                 else:
-                    mimeBody = MIMEText('%s%s / %s / %s / %s / %s%s%s%s' % (
+                    mimeBody = MIMEText('%s%s%s%s%s' % (
                         '''
                         <html><body><h2>今日最新-Play公社,政府採購報馬仔</h2><div>
                           <p>您目前所設定的追蹤關鍵字為：<p><span>
                         '''
-                        , keywords[0],
-                        keywords[1],
-                        keywords[2],
-                        keywords[3],
-                        keywords[4],
+                        , keywordsList,
                         '</span></div><ul>',
                         htmlString,
                         '''
@@ -116,9 +113,7 @@ class SendGovNotice(BrowserView):
                                                         '您好，Play公社-政府採購公告：',
                                                         str(DateTime()).split()[0]),
                                       body='%s' % (mimeBody.as_string()))
-                logger.info('send mail OK, to %s' % (user.emailaddress))
-                logger.info('keywords is => %s, %s, %s, %s, %s' %
-                         (keywords[0], keywords[1], keywords[2], keywords[3], keywords[4] ))
-#                return
+                logger.info('send mail OK, to %s' % user.emailaddress)
+                logger.info('keywords is => %s' % keywordsList)
             else:
                 continue
