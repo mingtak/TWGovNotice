@@ -68,6 +68,13 @@
     permission="zope2.View"
     class=".sitemap.Sitemap3" />
 
+  <browser:page
+    for="*"
+    name="sitemapForBot"
+    permission="zope2.View"
+    class=".sitemap.Sitemap" />
+
+
 <!--
 測試用，平常不開
   <browser:page
