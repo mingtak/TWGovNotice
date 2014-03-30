@@ -42,3 +42,26 @@ class Sitemap3(BrowserView):
         urlList = getAllUrl(type='Document', dateRange=60)
         return urlList
 
+class Sitemap(BrowserView):
+    def __call__(self):
+        if not (hasattr(self.request, 'type') and hasattr(self.request, 'start') and hasattr(self.request, 'end')):
+            return None
+        if self.request['type'] == 'a':
+            portal_type = 'Document'
+        elif self.request['type'] == 'b':
+            portal_type = 'twgov.content.relationnotice'
+        elif self.request['type'] == 'c':
+            portal_type= 'twgov.content.govnotice'
+        else:
+            return None
+        start = int(self.request['start'])
+        end = int(self.request['end'])
+
+        catalog = api.portal.get_tool(name='portal_catalog')
+
+        brain = catalog(portal_type=portal_type, sort_on='created')
+
+        urlList = ''
+        for i in range(start, end):
+            urlList += '%s\n' % brain[i].getURL()
+        return urlList
