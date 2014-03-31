@@ -1,7 +1,7 @@
 <div i18n:domain="plone"
      id="portal-footer">
    <p class="left">
-      <a href="http://www.mingtak.com.tw/" target=_blank>銘啟科技有限公司</a> Copyright © <span>2010-<tal:year tal:content="view/year" /></span> Mingtak Co., Ltd. All Rights Reserved. 
+      <a href="http://www.mingtak.com.tw/" target=_blank>銘啟科技有限公司</a> Copyright © <span>2013-<tal:year tal:content="view/year" /></span> Mingtak Co., Ltd. All Rights Reserved. 
    </p>
    <p class="right">業務專線：02-2897-3942</p>
 

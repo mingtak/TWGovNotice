@@ -197,9 +197,10 @@ class IgovNotice(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-
-
-
+    qrCodeImage = NamedBlobImage(
+        title=_(u"QR Code Image"),
+        required=False,
+    )
 
     #setting full text search field
     dexteritytextindexer.searchable('govDepartment')

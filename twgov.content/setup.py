@@ -30,6 +30,7 @@ setup(name='twgov.content',
           'plone.app.relationfield',
           'plone.namedfile [blobs]',
           'beautifulsoup4',
+          'qrcode',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

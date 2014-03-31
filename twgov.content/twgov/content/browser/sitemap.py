@@ -59,9 +59,12 @@ class Sitemap(BrowserView):
 
         catalog = api.portal.get_tool(name='portal_catalog')
 
-        brain = catalog(portal_type=portal_type, sort_on='created')
+        brain = catalog({'portal_type':portal_type, 'review_state':'published'}, sort_on='created')
 
         urlList = ''
         for i in range(start, end):
-            urlList += '%s\n' % brain[i].getURL()
+            try:
+                urlList += '%s\n' % brain[i].getURL()
+            except:
+                break
         return urlList

@@ -17,7 +17,6 @@ from datetime import datetime
 from Products.CMFPlone.utils import safe_unicode
 import logging
 
-
 logger = logging.getLogger(".sendgovnotice.SendGovNotice")
 
 

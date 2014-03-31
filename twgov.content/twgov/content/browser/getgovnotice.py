@@ -7,11 +7,18 @@ from ..config import PCC_DOMAIN
 from ..config import TEST_STRING
 from ..config import NOTICE_KEYWORDS
 from ..config import GET_GOV_NOTICE_LOG_FILE
+from ..config import WEB_SITE_URL
+from ..config import LOG_MAIL_RECIPIENT
+from ..config import LOG_MAIL_SENDER
 from plone import api
 from random import random, choice, randrange
 from datetime import datetime
 from mmseg import seg_txt
 from Products.CMFPlone.utils import safe_unicode
+from plone import namedfile
+from plone.namedfile.field import NamedBlobImage
+import qrcode
+import os
 import logging
 import scseg
 import re
@@ -242,9 +249,23 @@ class GetGovNotice(BrowserView):
             item.setDescription(u'%s公告，本案採購名稱：「%s」，招標方式為%s，並以%s決標' %
                                 (item.govDepartment, item.noticeName, item.bidWay, item.decideWay))
 
+            #設定QR Code
+            itemPhysicalPath = item.getPhysicalPath()
+            qrCodeContent = '%s, %s/%s/%s' % (item.noticeName, WEB_SITE_URL, itemPhysicalPath[-2], itemPhysicalPath[-1])
+            qrCodeImage = qrcode.make(qrCodeContent)
+            qrCodeImage.save('/tmp/tmpQrCodeImage.png')
+            with open('/tmp/tmpQrCodeImage.png') as tmpQrCodeImage:
+                qrCodeImage = tmpQrCodeImage.read()
+            item.qrCodeImage = namedfile.NamedBlobImage(data=qrCodeImage, filename=safe_unicode('%s.png' % item.id))
+
             # exclude from nav and reindex object
             item.exclude_from_nav = True
             item.reindexObject()
             add_count += 1
+
+        api.portal.send_email(recipient=LOG_MAIL_RECIPIENT,
+                              sender=LOG_MAIL_SENDER,
+                              subject="Play公社回報, govnotice 取得:%s" % add_count,
+                              body="Done!",)
 
         return logger.info(' : OK,this time additional content: %s' % add_count)

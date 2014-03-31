@@ -11,6 +11,7 @@ import logging
 import os
 from ..config import GET_BDM_URL_HEAD, GET_BDM_URL_TAIL
 from ..config import BDM_URL_HEAD, BDM_URL_TAIL
+from ..config import LOG_MAIL_RECIPIENT, LOG_MAIL_SENDER
 from zope import component
 from zope.app.intid.interfaces import IIntIds
 from plone.app.textfield.value import RichTextValue
@@ -104,4 +105,10 @@ class GetRelationNotice(BrowserView):
             except:
                 logger.error('error: %s' % pageUrl)
                 pass
+
+        api.portal.send_email(recipient=LOG_MAIL_RECIPIENT,
+                              sender=LOG_MAIL_SENDER,
+                              subject="Play公社回報, relationnotice 取得:%s" % addCount,
+                              body="Done!",)
+
         return logger.info('新增關聯公告完成，筆數: %s' % addCount)
