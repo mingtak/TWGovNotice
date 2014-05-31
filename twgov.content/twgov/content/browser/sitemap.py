@@ -4,67 +4,44 @@ from plone import api
 from DateTime import DateTime
 from datetime import datetime
 import logging
-
+from ..config import XML_FILE_DIR
 
 logger = logging.getLogger(".sitemap")
 
 
-def getAllUrl(type=str(), dateRange=int()):
-    #設定時間區間
-    start = DateTime() - dateRange
-    now = DateTime()
-
+def getXml(type=str(), start=int(), end=int()):
     catalog = api.portal.get_tool(name='portal_catalog')
+    brain = catalog({'portal_type':type, 'review_state':'published'}, sort_on='created')
+    headString = '''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+                 '''
+    tailString = '</urlset>'
 
-    dateRange = {'query':(start,now), 'range': 'min:max'}
-    brains = catalog({'portal_type':type, 'created':dateRange}, sort_on='created')
+    itemList = ''
+    for i in range(start, end):
+        try:
+            itemList += '<url>\n  <loc>%s</loc>\n  <lastmod>%s</lastmod>\n</url>\n' % (brain[i].getURL(), str(brain[i].ModificationDate))
+        except:
+            break
 
-    urlList = ''
-    for brain in brains:
-        urlList += '%s\n' % brain.getURL()
-    return urlList
+    return '%s\n%s%s' % (headString, itemList, tailString)
 
 
-class Sitemap1(BrowserView):
+class SitemapXml(BrowserView):
     def __call__(self):
-        urlList = getAllUrl(type='twgov.content.govnotice', dateRange=60)
-        return urlList
+        if not (hasattr(self.request, 'type') and hasattr(self.request, 'start') and hasattr(self.request, 'end') and hasattr(self.request, 'filename')):
+            return '缺少參數'
 
-
-class Sitemap2(BrowserView):
-    def __call__(self):
-        urlList = getAllUrl(type='twgov.content.relationnotice', dateRange=60)
-        return urlList
-
-
-class Sitemap3(BrowserView):
-    def __call__(self):
-        urlList = getAllUrl(type='Document', dateRange=60)
-        return urlList
-
-class Sitemap(BrowserView):
-    def __call__(self):
-        if not (hasattr(self.request, 'type') and hasattr(self.request, 'start') and hasattr(self.request, 'end')):
-            return None
-        if self.request['type'] == 'a':
-            portal_type = 'Document'
-        elif self.request['type'] == 'b':
-            portal_type = 'twgov.content.relationnotice'
-        elif self.request['type'] == 'c':
-            portal_type= 'twgov.content.govnotice'
-        else:
-            return None
         start = int(self.request['start'])
         end = int(self.request['end'])
+        portal_type = self.request['type']
+        filename = self.request['filename']
 
-        catalog = api.portal.get_tool(name='portal_catalog')
-
-        brain = catalog({'portal_type':portal_type, 'review_state':'published'}, sort_on='created')
-
-        urlList = ''
-        for i in range(start, end):
-            try:
-                urlList += '%s\n' % brain[i].getURL()
-            except:
-                break
-        return urlList
+        xmlString = getXml(portal_type, start, end)
+        with open('%s%s' % (XML_FILE_DIR, filename), 'w') as xmlFile:
+            xmlFile.write(xmlString)
+        logger.info('xml寫入OK')
+        return 'xml寫入OK'

@@ -18,6 +18,22 @@
 <tal:note condition="python:False" content="string:設定開始時間startDate，可調整天數" />
 <tal:setStartDate define="startDate python:3">
 
+<!-- 系統最新消息Begin -->
+  <tal:systemNews define="start python:modules['DateTime'].DateTime() - 3;
+                          now python:modules['DateTime'].DateTime();
+                          dateRange python:{'query':(start, now), 'range': 'min:max'};
+                          brain python:context.portal_catalog({'portal_type':'Document', 'created':dateRange},
+                                                              sort_on='created', sort_order='descending')"
+                  condition="brain">
+    <p class="notice info">
+      <a tal:content="python:brain[0].Title" 
+         tal:attributes="href python:brain[0].getURL()"></a>
+    </p>
+    <br/><hr>
+  </tal:systemNews>
+<!-- 系統最新消息End -->
+
+
 <!-- 熱門公告開始 -->
 
   <!-- google ad 開始 -->

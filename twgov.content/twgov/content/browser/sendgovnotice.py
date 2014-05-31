@@ -58,7 +58,10 @@ class SendGovNotice(BrowserView):
                 for keyword in keywords:
                     keywordsList += ' %s /' % keyword
                     dateRange = {'query':(start,now), 'range': 'min:max'}
-                    brains = catalog({'portal_type':'twgov.content.govnotice', 'Title':keyword, 'created':dateRange}, sort_on='created')
+                    try:
+                        brains = catalog({'portal_type':'twgov.content.govnotice', 'Title':keyword, 'created':dateRange}, sort_on='created')
+                    except:
+                        continue
                     for brain in brains:
                         if safe_unicode(brain.noticeName) not in safe_unicode(htmlString):
                             url = brain.getPath().replace(PORTAL_DIR, SITE_URL)

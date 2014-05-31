@@ -34,5 +34,8 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+  <include package=".portlets" />
+  
+
   <include package=".eventshandle" />
 </configure>

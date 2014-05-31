@@ -10,6 +10,7 @@ from ..config import GET_GOV_NOTICE_LOG_FILE
 from ..config import WEB_SITE_URL
 from ..config import LOG_MAIL_RECIPIENT
 from ..config import LOG_MAIL_SENDER
+from ..config import MY_DICT
 from plone import api
 from random import random, choice, randrange
 from datetime import datetime
@@ -20,7 +21,12 @@ from plone.namedfile.field import NamedBlobImage
 import qrcode
 import os
 import logging
-import scseg
+#import scseg
+
+from jieba.analyse import extract_tags
+from jieba import load_userdict
+load_userdict(MY_DICT)
+
 import re
 
 
@@ -234,7 +240,8 @@ class GetGovNotice(BrowserView):
 
             # setup metadate
             resultsFromNoticeName, subjectFromNoticeName = str(), list()
-            for seg in scseg.seg_keywords(safe_unicode(item.noticeName)):
+#            for seg in scseg.seg_keywords(safe_unicode(item.noticeName)):
+            for seg in extract_tags(safe_unicode(item.noticeName), 5):
                 #去除含數字的seg
                 if re.search('\d', seg):
                     continue

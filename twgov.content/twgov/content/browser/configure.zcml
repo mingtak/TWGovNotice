@@ -52,28 +52,15 @@
 
   <browser:page
     for="*"
-    name="govNoticeSitemapMingtak"
-    permission="zope2.View"
-    class=".sitemap.Sitemap1" />
+    name="sitemapXml"
+    permission="cmf.ManagePortal"
+    class=".sitemap.SitemapXml" />
 
   <browser:page
     for="*"
-    name="relationNoticeSitemapMingtak"
-    permission="zope2.View"
-    class=".sitemap.Sitemap2" />
-
-  <browser:page
-    for="*"
-    name="documentMingtak"
-    permission="zope2.View"
-    class=".sitemap.Sitemap3" />
-
-  <browser:page
-    for="*"
-    name="sitemapForBot"
-    permission="zope2.View"
-    class=".sitemap.Sitemap" />
-
+    name="userkeywordlist"
+    permission="cmf.ManagePortal"
+    class=".userkeywordlist.UserKeywordList" />
 
 <!--
 測試用，平常不開

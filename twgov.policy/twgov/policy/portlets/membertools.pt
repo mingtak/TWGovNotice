@@ -1,0 +1,50 @@
+<tal:isMember condition="python:str(context.REQUEST['AUTHENTICATED_USER']) != 'Anonymous User'">
+<tal:with-fullname define="membership context/portal_membership;
+                           info python:membership.getMemberInfo(user.getId());
+                           userItem python:membership.getMemberById(user.getId());
+                           fullname info/fullname">
+
+<div class="widget">
+
+<div class="accordion accordion-style2">
+  <p class="accordion-title" style="font-size:1.2em"><a href="#"  tal:content="string:您好，${fullname}">Accordion 2 Title</a></p>
+
+<tal:note define="note string:預設看不到style='display:none'"></tal:note>
+
+
+  <div>
+
+<tal:emailErrorList define="getErrorList python:getattr(view, 'emailErrorList', '')"
+                    condition="python:getErrorList != None">
+  <tal:repeat define="errorList python:getErrorList.split('\n')">
+    <tal:checkKeywords condition="python:userItem.emailaddress in errorList">
+      <p class="notice error">您的email設定錯誤，系統信件已多次退信，請<a href="/keywords_setting" style="color:blue">修改設定</a></p>
+    </tal:checkKeywords>
+
+  </tal:repeat>
+</tal:emailErrorList>
+
+<tal:checkKeywords condition="python:userItem.emailaddress == ''">
+  <p class="notice wrong">設定未完成，建議先<a href="/keywords_setting" style="color:blue">設定搜尋關鍵字</a></p>
+</tal:checkKeywords>
+
+<tal:checkTrace condition="python:hasattr(userItem, 'traceDict') and (len(userItem.traceDict) > 0)">
+  <tal:checkEmail condition="python:userItem.emailaddress == ''">
+    <p class="notice wrong">您有追蹤標案，卻沒設定email, 請<a href="/keywords_setting" style="color:blue">設定email</a></p>
+  </tal:checkEmail>
+</tal:checkTrace>
+
+
+    <ul class="sidemenu">
+      <li><a href="/keywords_setting">搜尋關鍵字設定</a></li>
+      <li><a href="/system/service_doc">服務說明</a></li>
+      <li><a href="/logout">登出</a></li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+
+</tal:with-fullname>
+</tal:isMember>

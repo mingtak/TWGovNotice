@@ -97,6 +97,8 @@ p.p10,p.p15,p.p20,p.p25,p.p30,p.p33,p.p40,p.p50,p.p60,p.p66,p.p70,p.p75,p.p80,p.
 .success:before { content: '\f058'; color: #8fa442; }
 .info { background-color: #d8ecf5; border-color: #9ac9df; color: #528da9; }
 .info:before { content: '\f05a'; color: #528da9; }
+.wrong { background-color: #FDF992; border-color: #9ac9df; color: #528da9; }
+.wrong:before { content: '\f071'; color: #FF6767; } */
 
 
 /* modify for twgovnotice */
