@@ -40,12 +40,13 @@ class SendRelationItem(BrowserView):
 
         #將近期的relationNotice找出來，列出item.noticeRelation, list type
         dateRange = {'query':(start,now), 'range': 'min:max'}
-        brains = catalog({'portal_type':'twgov.content.relationnotice', 'created':dateRange}, sort_on='created')
+        brains = catalog({'portal_type':'twgov.content.newrelationnotice', 'created':dateRange}, sort_on='created')
         noticeRelationList = []
         for brain in brains:
             item = brain.getObject()
-            for noticeRelation in item.noticeRelation:
-                noticeRelationList.append(noticeRelation.to_object.id)
+            if item.noticeRelation != None:
+                for noticeRelation in item.noticeRelation:
+                    noticeRelationList.append(noticeRelation.to_object.id)
 
         #開始逐個user處理
         for userId in users:

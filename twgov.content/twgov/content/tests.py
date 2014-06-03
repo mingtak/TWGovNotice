@@ -52,6 +52,14 @@ def test_suite():
 
         # -*- extra stuff goes here -*-
 
+        # Integration tests for NewRelationNotice
+        ztc.ZopeDocFileSuite(
+            'NewRelationNotice.txt',
+            package='twgov.content',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
         # Integration tests for RelationNotice
         ztc.ZopeDocFileSuite(
             'RelationNotice.txt',

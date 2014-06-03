@@ -62,6 +62,18 @@
     permission="cmf.ManagePortal"
     class=".userkeywordlist.UserKeywordList" />
 
+  <browser:page
+    for="*"
+    name="getNewRelationNotice"
+    permission="cmf.ManagePortal"
+    class=".getNewRelationNotice.GetNewRelationNotice" />
+
+  <browser:page
+    for="*"
+    name="getHistoryNewRelationNotice"
+    permission="cmf.ManagePortal"
+    class=".getHistoryNewRelationNotice.GetHistoryNewRelationNotice" />
+
 <!--
 測試用，平常不開
   <browser:page

@@ -50,4 +50,24 @@
     </index>
     <column value="budgetPoint"/>
 
+    <index name="noticePublishedDate" meta_type="FieldIndex">
+        <indexed_attr value="noticePublishedDate"/>
+    </index>
+    <column value="noticePublishedDate"/>
+
+    <index name="authorityName" meta_type="FieldIndex">
+        <indexed_attr value="authorityName"/>
+    </index>
+    <column value="authorityName"/>
+
+    <index name="winningTenderer" meta_type="FieldIndex">
+        <indexed_attr value="winningTenderer"/>
+    </index>
+    <column value="winningTenderer"/>
+
+    <index name="noAwardCompaniesName" meta_type="FieldIndex">
+        <indexed_attr value="noAwardCompaniesName"/>
+    </index>
+    <column value="noAwardCompaniesName"/>
+
 </object>
