@@ -44,8 +44,9 @@ class GetHistoryNewRelationNotice(BrowserView):
         addCount = 0
         for pageUrl in urlList:
             try:
-                os.system('sleep 1s')
-                if len(catalog(noticeUrl=pageUrl)) > 0:
+                if (addCount % 4) == 3:
+                    os.system('sleep 1s')
+                if len(catalog({'portal_type':'twgov.content.govnotice', 'noticeUrl':pageUrl})) > 0:
                     logger.info('noticeUrl: %s' % pageUrl)
                     continue                
                 pageHtml =  urllib2.urlopen(pageUrl).read()
