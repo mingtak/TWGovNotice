@@ -55,7 +55,12 @@
       </ul>
 
       <div class="tab tab4">
-        <p><strong>機關名稱：</strong><span tal:content="context/govDepartment"></span></p>
+        <p><strong>機關名稱：</strong><span tal:content="context/govDepartment"></span>
+           <i class="icon-star" style="color:#18AA2A" />
+           <span style="font-size:0.8em">
+             <a target="_blank" tal:attributes="href string:/govAnalytics?gov=${context/govDepartment}"> 歷年決標記錄</a>
+           </span>
+        </p>
         <p><strong>單位名稱：</strong><span tal:content="context/govBranch"></span></p>
         <p><strong>機關地址：</strong><span tal:content="context/govAddress"></span></p> 
         <p><strong>聯絡人：</strong><span tal:content="context/contact"></span></p> 

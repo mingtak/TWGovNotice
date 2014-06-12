@@ -74,6 +74,18 @@
     permission="cmf.ManagePortal"
     class=".getHistoryNewRelationNotice.GetHistoryNewRelationNotice" />
 
+  <browser:page
+    for="*"
+    name="comAnalytics"
+    permission="zope2.View"
+    class=".noticeanalytics.ComAnalytics" />
+
+  <browser:page
+    for="*"
+    name="govAnalytics"
+    permission="zope2.View"
+    class=".noticeanalytics.GovAnalytics" />
+
 <!--
 測試用，平常不開
   <browser:page

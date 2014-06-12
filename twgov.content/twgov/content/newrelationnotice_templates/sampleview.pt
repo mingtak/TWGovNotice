@@ -55,7 +55,12 @@
 <br/><hr>
 
       <div class="tab tab1">
-        <p><strong> 機關名稱：</strong><span tal:content="context/authorityName"></span></p>
+        <p><strong> 機關名稱：</strong><span tal:content="context/authorityName"></span>
+           <i class="icon-star" style="color:#18AA2A" />
+           <span style="font-size:0.8em">
+             <a target="_blank" tal:attributes="href string:/govAnalytics?gov=${context/authorityName}"> 歷年決標記錄</a>
+           </span>
+        </p>
         <p><strong> 標案名稱：</strong><span tal:content="python:context.title.split(u'[決標]:')[1]"></span></p>
         <p><strong> 標案案號：</strong><span tal:content="context/noticeId"></span></p>
         <tal:checkDate condition="python:not str(context.noticePublishedDate).split('-')[0] == '2000'">
@@ -74,7 +79,12 @@
       </div>
 
       <div class="tab tab2" style="display: none;">
-        <p><strong> 得標廠商名稱：</strong><span tal:content="context/winningTenderer"></span></p>
+        <p><strong> 得標廠商名稱：</strong>
+           <span tal:content="context/winningTenderer" /> <i class="icon-star" style="color:#18AA2A" />
+           <span style="font-size:0.8em">
+             <a target="_blank" tal:attributes="href string:/comAnalytics?com=${context/winningTenderer}"> 歷年得標記錄</a>
+           </span>
+        </p>
         <p><strong> 預算金額：</strong><span tal:content="context/noticeBudget"></span></p>
         <p><strong> 決標金額：</strong><span tal:content="context/awardAmount"></span></p>
         <p><strong> 決標方式：</strong><span tal:content="context/awardMethod"></span></p>
