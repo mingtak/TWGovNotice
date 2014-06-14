@@ -26,7 +26,8 @@
                   condition="brain">
     <p class="notice info">
       <a tal:content="python:brain[0].Title"
-         tal:attributes="href python:brain[0].getURL()"></a>
+         tal:attributes="title python:brain[0].Description;
+                         href python:brain[0].getURL()"></a>
     </p>
     <hr>
   </tal:systemNews>
