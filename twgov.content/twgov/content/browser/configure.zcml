@@ -52,9 +52,17 @@
 
   <browser:page
     for="*"
-    name="sitemapXml"
-    permission="cmf.ManagePortal"
-    class=".sitemap.SitemapXml" />
+    name="sitemap_govnotice"
+    permission="zope2.View"
+    class=".sitemap.SitemapGovNotice" />
+
+  <browser:page
+    for="*"
+    name="sitemap_relatednotice"
+    permission="zope2.View"
+    class=".sitemap.SitemapRelatedNotice" />
+
+
 
   <browser:page
     for="*"

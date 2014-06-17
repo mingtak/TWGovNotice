@@ -47,7 +47,7 @@
                                               sort_on='noticeUrl', sort_order='reverse')">
 
 <h3 tal:condition="python:len(brain)==0"
-    tal:content="string:本功能暫無支援您的瀏灠器，請改用Firefox, Crome, 即可正常顯示。" />
+    tal:content="string:本功能暫無支援您的瀏灠器，請改用Firefox, Chrome, 即可正常顯示。" />
 <tal:checkZero condition="python:len(brain)!=0">
   <h2 class="sub-heading-upper" style="font-size:1.6em"
       tal:content="python:'%s 歷年共有 %s 筆得標記錄:' % (request['com'], len(brain))"></h2>
@@ -85,7 +85,7 @@
                                               sort_on='noticeUrl', sort_order='reverse')">
 
 <h3 tal:condition="python:len(brain)==0"
-    tal:content="string:本功能暫無支援您的瀏灠器，請改用Firefox, Crome, 即可正常顯示。" />
+    tal:content="string:本功能暫無支援您的瀏灠器，請改用Firefox, Chrome, 即可正常顯示。" />
 <tal:checkZero condition="python:len(brain)!=0">
 
 <h2 class="sub-heading-upper" style="font-size:1.6em"

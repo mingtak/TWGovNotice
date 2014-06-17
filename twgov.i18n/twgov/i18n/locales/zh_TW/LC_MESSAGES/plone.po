@@ -6985,7 +6985,7 @@ msgstr "搜尋日期範圍的開始日期"
 #. Default: "Used in item listings and search results."
 #: Archetypes/ExtensibleMetadata.py:97
 msgid "help_description"
-msgstr "會出現在目錄清單和搜尋結果裡。"
+msgstr "100字以內的簡短說明文字"
 
 #. Default: "Determines if Short Names (also known as IDs) are changable when editing items. If Short Names are not displayed, they will be generated automatically."
 #: CMFPlone/skins/plone_deprecated/personalize_form.cpt:308
@@ -8215,7 +8215,7 @@ msgstr "刪除相片"
 #: plone.app.contentrules/plone/app/contentrules/browser/templates/manage-elements.pt:44
 #: plone.app.viewletmanager/plone/app/viewletmanager/manage-viewlets.pt:55
 msgid "label_description"
-msgstr "摘要描述"
+msgstr "摘要說明"
 
 #. Default: "Disable"
 #: plone.app.contentrules/plone/app/contentrules/browser/templates/controlpanel.pt:179
