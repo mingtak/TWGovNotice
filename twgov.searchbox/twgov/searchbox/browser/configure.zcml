@@ -1,0 +1,14 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="twgov.searchbox">
+    <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="searchresult_view"
+      class=".searchresultview.SearchResultView"
+      permission="zope.Public"
+      />
+
+</configure>

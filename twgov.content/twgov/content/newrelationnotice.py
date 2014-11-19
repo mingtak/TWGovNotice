@@ -20,7 +20,7 @@ from twgov.content import MessageFactory as _
 from twgov.content.govnotice import IgovNotice
 from plone.indexer import indexer
 from collective import dexteritytextindexer
-
+from Products.CMFPlone.utils import safe_unicode
 
 class INewRelationNotice(form.Schema, IImageScaleTraversable):
 
@@ -139,3 +139,9 @@ grok.global_adapter(noAwardCompaniesName_indexer, name='noAwardCompaniesName')
 def noticeUrl_indexer(obj):
      return obj.noticeUrl
 grok.global_adapter(noticeUrl_indexer, name='noticeUrl')
+
+@indexer(INewRelationNotice)
+def biddingCompaniesName_indexer(obj):
+     resultString = safe_unicode(obj.noAwardCompaniesName) + u',' + safe_unicode(obj.winningTenderer)
+     return resultString
+grok.global_adapter(biddingCompaniesName_indexer, name='biddingCompaniesName')

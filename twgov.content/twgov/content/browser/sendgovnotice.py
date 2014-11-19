@@ -109,12 +109,16 @@ class SendGovNotice(BrowserView):
                         ''',),
                         'html', 'utf-8')
 
-                api.portal.send_email(recipient=user.emailaddress,
-                                      sender='service@mingtak.com.tw',
-                                      subject='%s%s%s' % (str(user.getProperty("fullname")),
-                                                        '您好，Play公社-政府採購公告：',
-                                                        str(DateTime()).split()[0]),
-                                      body='%s' % (mimeBody.as_string()))
+                try:
+                    api.portal.send_email(recipient=user.emailaddress,
+                                          sender='service@mingtak.com.tw',
+                                          subject='%s%s%s' % (str(user.getProperty("fullname")),
+                                                            '您好，Play公社-政府採購公告：',
+                                                            str(DateTime()).split()[0]),
+                                          body='%s' % (mimeBody.as_string()))
+                except:
+                    logger.error('send email ERROR!!, %s' % user.emailaddress)
+                    pass
                 logger.info('send mail OK, to %s' % user.emailaddress)
                 logger.info('keywords is => %s' % keywordsList)
             else:

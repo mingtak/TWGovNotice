@@ -62,6 +62,13 @@
     permission="zope2.View"
     class=".sitemap.SitemapRelatedNotice" />
 
+  <browser:page
+    for="*"
+    name="sitemap_news"
+    permission="zope2.View"
+    class=".sitemap.SitemapDocAndNews" />
+
+
 
 
   <browser:page
@@ -95,13 +102,12 @@
     class=".noticeanalytics.GovAnalytics" />
 
 <!--
-測試用，平常不開
+測試用，平常不開 -->
   <browser:page
     for="*"
     name="testFunction"
     permission="cmf.ManagePortal"
     class=".testfunction.TestFunction" />
--->
 
 
 </configure>

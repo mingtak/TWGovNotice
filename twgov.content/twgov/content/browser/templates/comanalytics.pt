@@ -40,24 +40,28 @@
 </div>
 <hr>
 
+
+<tal:checkString condition="python:request['com'] != ''">
 <tal:checkRole condition="python:'Anonymous' in request['AUTHENTICATED_USER'].getRoles()">
   <tal:getBrain define="catalog python:context.portal_catalog;
                         brain python:catalog({'portal_type':'twgov.content.newrelationnotice',
-                                              'winningTenderer':modules['Products.CMFPlone.utils'].safe_unicode(request['com'])},
+                                              'biddingCompaniesName':request['com']},
                                               sort_on='noticeUrl', sort_order='reverse')">
 
-<h3 tal:condition="python:len(brain)==0"
-    tal:content="string:本功能暫無支援您的瀏灠器，請改用Firefox, Chrome, 即可正常顯示。" />
-<tal:checkZero condition="python:len(brain)!=0">
   <h2 class="sub-heading-upper" style="font-size:1.6em"
-      tal:content="python:'%s 歷年共有 %s 筆得標記錄:' % (request['com'], len(brain))"></h2>
-
+      tal:content="python:'%s 歷年共有 %s 筆投標記錄:' % (request['com'], len(brain))" />
+  <span>
+    <i class="icon-thumbs-up" style="color:#FF241F" />表示該案得標
+  </span>
       <ul>
         <li tal:repeat="item python:brain[:5]">
            <p>
              <strong tal:content="string:${item/authorityName}: " />
              <a tal:content="python:item.Title.split('[決標]:')[1]"
                 tal:attributes="href item/getURL" />
+             <tal:checkWin condition="python:request['com'].decode('utf-8') == item.winningTenderer">
+<i class="icon-thumbs-up" style="color:#FF241F" />
+             </tal:checkWin>
              <tal:getDate define="dateString python:item.noticeUrl.split('ds=')[1].split('&')[0];
                                   year python:dateString[0:4];
                                   month python:dateString[4:6];
@@ -67,29 +71,27 @@
            </p>
         </li>
       </ul>
-</tal:checkZero>
   </tal:getBrain>
 
   <p class="pull-right">
     想查看更多？<a class="button blue small" href="/@@facebook-login"> <i class="icon-facebook"> </i> 臉書登入</a>
   </p>
 </tal:checkRole>
+</tal:checkString>
 
-
-
+<tal:checkString condition="python:request['com'] != ''">
 <tal:checkRole condition="python:'Anonymous' not in request['AUTHENTICATED_USER'].getRoles()">
   <tal:getBrain define="catalog python:context.portal_catalog;
                         start python:int(getattr(request, 'start', 0));
                         brain python:catalog({'portal_type':'twgov.content.newrelationnotice',
-                                              'winningTenderer':modules['Products.CMFPlone.utils'].safe_unicode(request['com'])},
+                                              'biddingCompaniesName':request['com']},
                                               sort_on='noticeUrl', sort_order='reverse')">
 
-<h3 tal:condition="python:len(brain)==0"
-    tal:content="string:本功能暫無支援您的瀏灠器，請改用Firefox, Chrome, 即可正常顯示。" />
-<tal:checkZero condition="python:len(brain)!=0">
-
 <h2 class="sub-heading-upper" style="font-size:1.6em"
-    tal:content="python:'%s 歷年共有 %s 筆得標記錄:' % (request['com'], len(brain))"></h2>
+    tal:content="python:'%s 歷年共有 %s 筆投標記錄:' % (request['com'], len(brain))" />
+  <span>
+    <i class="icon-thumbs-up" style="color:#FF241F" />表示該案得標
+  </span>
 
     <ul>
       <tal:repeat repeat="item python:brain[start:start+20]">
@@ -98,6 +100,9 @@
              <strong tal:content="string:${item/authorityName}: " />
              <a tal:content="python:item.Title.split('[決標]:')[1]"
                 tal:attributes="href item/getURL" />
+             <tal:checkWin condition="python:request['com'].decode('utf-8') == item.winningTenderer">
+<i class="icon-thumbs-up" style="color:#FF241F" />
+             </tal:checkWin>
              <tal:getDate define="dateString python:item.noticeUrl.split('ds=')[1].split('&')[0];
                                   year python:dateString[0:4];
                                   month python:dateString[4:6];
@@ -156,10 +161,9 @@
     </a>
   </tal:check>
 </div>
-</tal:checkZero>
   </tal:getBrain>
 </tal:checkRole>
-
+</tal:checkString>
 
   </metal:content-core>
 </metal:main>

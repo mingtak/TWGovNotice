@@ -32,6 +32,8 @@ class GetNewRelationNotice(BrowserView):
             getBdmUrl = '%s%s%s' % (GET_BDM_URL_HEAD, dateString, GET_BDM_URL_TAIL)
             execString = 'elinks --dump %s | grep BDM' % getBdmUrl
             getBDM_Urls = os.popen(execString).read()
+########
+#            logger.info('1111111111111111')
         except:
             raise IOError('web site NO Response')
         #取得所有網址
@@ -41,9 +43,13 @@ class GetNewRelationNotice(BrowserView):
                 continue
             bdmUrl = '%s%s%s' % (BDM_URL_HEAD, dateString, BDM_URL_TAIL)
             urlList.append(bdmUrl+url.split('/')[-1])
+######## 
+#            logger.info('2222222222222222222')
         #處理個別頁面
         intIds = component.getUtility(IIntIds)
         addCount = 0
+#############
+#        import pdb; pdb.set_trace()
         for pageUrl in urlList:
             try:
                 os.system('sleep 1s')

@@ -1,0 +1,159 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="twgov.searchbox">
+<body>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+
+<div class="p50">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 336X280大矩形 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-9621066722313042"
+     data-ad-slot="9625513874"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="p50 pull-right">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 336X280大矩形 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-9621066722313042"
+     data-ad-slot="9625513874"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<hr>
+
+
+<tal:checkString condition="python:getattr(request, 'key', False) and request['key'] != ''">
+<tal:checkRole condition="python:'Anonymous' in request['AUTHENTICATED_USER'].getRoles()">
+  <tal:getBrain define="brain view/brain">
+
+  <h2 class="sub-heading-upper" style="font-size:1.6em"
+      tal:content="python:'共有%s項標案符合條件:' % len(brain)" />
+
+<div class="search-results">
+<dl class="searchResults">
+  <tal:results repeat="item python:brain[:5]">
+    <ul>
+      <li>
+          <a tal:define="item_url item/getURL"
+           tal:attributes="href item_url"
+           tal:content="item/Title" />
+          <tal:checkNone condition="python:not getattr(item, 'govDepartment', None) is None">
+            <span tal:content="python:'--%s (截標日期：%s)' % (item.govDepartment.encode('utf-8'), str(item.endDate))"></span>
+          </tal:checkNone>
+      </li>
+    </ul>
+  </tal:results>
+</dl></div>
+
+
+
+  </tal:getBrain>
+
+  <p class="pull-right">
+    想查看更多？<a class="button blue small" href="/@@facebook-login"> <i class="icon-facebook"> </i> 臉書登入</a>
+  </p>
+</tal:checkRole>
+</tal:checkString>
+
+
+
+
+
+<tal:checkString condition="python:getattr(request, 'key', False) and request['key'] != ''">
+<tal:checkRole condition="python:'Anonymous' not in request['AUTHENTICATED_USER'].getRoles()">
+  <tal:getBrain define="brain view/brain;
+                        start python:int(getattr(request, 'start', 0));">
+
+
+  <h2 class="sub-heading-upper" style="font-size:1.6em"
+      tal:content="python:'共有%s項標案符合條件:' % len(brain)" />
+
+
+
+<ul>
+  <tal:repeat repeat="item python:brain[start:start+20]">
+
+      <li>
+<p>
+          <a tal:define="item_url item/getURL"
+           tal:attributes="href item_url"
+           tal:content="item/Title" />
+          <tal:checkNone condition="python:not getattr(item, 'govDepartment', None) is None">
+            <span tal:content="python:'--%s (截標日期：%s)' % (item.govDepartment.encode('utf-8'), str(item.endDate))"></span>
+          </tal:checkNone>
+</p>
+      </li>
+
+
+<tal:check10 condition="python:repeat['item'].number() % 20 == 10">
+<hr>
+<div class="p50">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 336X280大矩形 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-9621066722313042"
+     data-ad-slot="9625513874"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="p50 pull-right">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 336X280大矩形 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-9621066722313042"
+     data-ad-slot="9625513874"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<hr>
+</tal:check10>
+
+
+
+      </tal:repeat>
+    </ul>
+
+<div class="pull-right">
+  <tal:check condition="python:start!=0">
+
+    <a class="button blue small"
+       tal:define="nextStart python:start-20"
+       tal:attributes="href string:./searchresult_view?start=${nextStart}&key=${request/key}">
+       上一頁
+    </a>
+  </tal:check>
+  <tal:check condition="python:start+20 < len(brain)">
+    <a class="button blue small"
+       tal:define="nextStart python:start+20"
+       tal:attributes="href string:./searchresult_view?start=${nextStart}&key=${request/key}">
+       下一頁
+    </a>
+  </tal:check>
+</div>
+  </tal:getBrain>
+</tal:checkRole>
+</tal:checkString>
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>

@@ -11,6 +11,7 @@ from ..config import WEB_SITE_URL
 from ..config import LOG_MAIL_RECIPIENT
 from ..config import LOG_MAIL_SENDER
 from ..config import MY_DICT
+from ..config import METADATA_KEYWORD_LIST
 from plone import api
 from random import random, choice, randrange
 from datetime import datetime
@@ -251,7 +252,8 @@ class GetGovNotice(BrowserView):
             #輸出分詞結果，供人工分析
             titleLogger.info(item.noticeName.encode('utf-8'))
             segLogger.info(resultsFromNoticeName.encode('utf-8'))
-            randomKeyword = choice(['政府採購', 'Play公社', '標案', '投標', '共契', '共同供應契約', '招標公告'])
+            randomKeyword = choice(METADATA_KEYWORD_LIST)
+
             item.setSubject([item.noticeName, randomKeyword] + subjectFromNoticeName)
             item.setDescription(u'%s公告，本案採購名稱：「%s」，招標方式為%s，並以%s決標' %
                                 (item.govDepartment, item.noticeName, item.bidWay, item.decideWay))

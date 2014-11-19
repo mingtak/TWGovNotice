@@ -50,7 +50,7 @@ class FacebookLogin(BrowserView):
         error            = self.request.form.get("error", None)
         errorReason      = self.request.form.get("error_reason", None)
 
-        salt = hashlib.sha256().hexdigest() 
+        salt = hashlib.sha256().hexdigest()
         session = ISession(self.request)
         session[FB_AUTHENTICATION_SALT_KEY] = salt
         args = {

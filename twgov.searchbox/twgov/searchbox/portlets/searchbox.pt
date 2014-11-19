@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:omit-tag="">
+<dl class="portlet portletSearch"
+    i18n:domain="twgov.searchbox">
+
+  <dt class="portletHeader">
+      <span class="portletTopLeft"></span>
+      <h3 class="tile">標案搜尋</h3>
+      <span class="portletTopRight"></span>
+  </dt>
+
+    <dd class="portletItem">
+      <form id="searchform" action="searchresult_view">
+        <div class="LSBox">
+<div class="p66">
+          <input class="searchField"
+              name="key"
+              type="text"
+              size="15"
+              title="輸入關鍵字"
+              placeholder="輸入關鍵字">
+</div>
+          <input class="searchButton button green small"
+              type="submit"
+              value="搜尋" />
+        </div>
+      </form>
+    </dd>
+</dl>
+</html>

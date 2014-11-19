@@ -29,11 +29,7 @@
 <h3 tal:content="structure python:'%s  <span style=\'font-size:0.6em\'>發佈日期：%s</span>' %
                  (context.Title(), str(context.CreationDate()).split('T')[0])">title goes here</h3>
 
-        <div id="parent-fieldname-text"
-             tal:condition="context/text"
-             tal:content="structure context/text/output" />
-
-
+<div class="right">
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
 <a class="addthis_button_facebook"></a>
@@ -45,6 +41,15 @@
 <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-524ee9c36088f37e"></script>
 <!-- AddThis Button END -->
+<br />
+</div>
+<hr>
+
+        <div id="parent-fieldname-text"
+             tal:condition="context/text"
+             tal:content="structure context/text/output" />
+
+<hr>
 
 <!-- Google AD Begin -->
 <p></p>

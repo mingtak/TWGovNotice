@@ -32,15 +32,27 @@
 <!-- 系統最新消息End -->
 
     <h2 tal:content="context/Title"></h2>
+
+<!-- Google AD Begin -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ResponsiveAd -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9621066722313042"
+     data-ad-slot="6313067471"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<hr>
+<!-- Google AD End -->
+
+
+
+
     <div class="horizontal-tabs tabs-wrapper p60">
 
-      <ul class="tabs">
-        <li class="active"><a id="tab1" href="#">標案資訊</a></li>
-        <li><a id="tab2" href="#">決標資訊</a></li>
-        <li><a id="tab3" href="#">公告全文</a></li>
-      </ul>
 
-<hr>
 <!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
 <a class="addthis_button_facebook"></a>
@@ -52,7 +64,27 @@
 <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-524ee9c36088f37e"></script>
 <!-- AddThis Button END -->
-<br/><hr>
+<br/>
+
+
+
+
+
+      <ul class="tabs">
+        <li class="active"><a id="tab1" href="#">標案資訊</a></li>
+        <li><a id="tab2" href="#">決標資訊</a></li>
+        <li><a id="tab3" href="#">公告全文</a></li>
+      </ul>
+
+
+
+
+
+
+
+
+
+
 
       <div class="tab tab1">
         <p><strong> 機關名稱：</strong><span tal:content="context/authorityName"></span>
@@ -82,7 +114,7 @@
         <p><strong> 得標廠商名稱：</strong>
            <span tal:content="context/winningTenderer" /> <i class="icon-star" style="color:#18AA2A" />
            <span style="font-size:0.8em">
-             <a target="_blank" tal:attributes="href string:/comAnalytics?com=${context/winningTenderer}"> 歷年得標記錄</a>
+             <a tal:attributes="href string:/comAnalytics?com=${context/winningTenderer}"> 投標記錄</a>
            </span>
         </p>
         <p><strong> 預算金額：</strong><span tal:content="context/noticeBudget"></span></p>
@@ -90,7 +122,12 @@
         <p><strong> 決標方式：</strong><span tal:content="context/awardMethod"></span></p>
         <p><strong> 投標廠商家數：</strong><span tal:content="context/tenderCompanies"></span></p>
         <tal:repeat repeat="item python:context.noAwardCompaniesName.split(',')">
-          <p><strong> 未得標廠商名稱：</strong><span tal:content="item"></span></p>
+          <p><strong> 未得標廠商名稱：</strong>
+             <span tal:content="item" /> <i class="icon-star" style="color:#18AA2A" />
+             <span style="font-size:0.8em">
+               <a tal:attributes="href string:/comAnalytics?com=${item}"> 投標記錄</a>
+             </span>
+          </p>
         </tal:repeat>
       </div>
 

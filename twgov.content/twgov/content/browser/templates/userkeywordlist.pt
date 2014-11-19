@@ -1,6 +1,13 @@
-<h1> user keyword list</h1>
+<h1>會員列表</h1>
+
 <a href="/" target="_blank">回網站首頁</a>
-<p></p>
+
+<tal:users define="users view/users;
+                   amount python:len(users)">
+<h3 tal:content="string:目前會員總數：${amount}"></h3>
+
+</tal:users>
+
 <table border=1>
   <thead>
     <tr>
