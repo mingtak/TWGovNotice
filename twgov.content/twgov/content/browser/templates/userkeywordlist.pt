@@ -7,7 +7,7 @@
 <h3 tal:content="string:目前會員總數：${amount}"></h3>
 
 </tal:users>
-
+<!--
 <table border=1>
   <thead>
     <tr>
@@ -31,10 +31,10 @@
       </tr>
     </tal:users>
 
-
-
   </tbody>
 </table>
+-->
+
 <br/>
 <a href="/" target="_blank">回網站首頁</a>
 <br/><br/><br/><br/><br/>

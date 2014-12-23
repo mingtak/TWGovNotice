@@ -35,6 +35,12 @@
 <!-- 系統最新消息End -->
 
 
+    <p class="notice info">
+      初次造訪嗎？建議先看看我們的<a title="服務說明" href="/system/service_doc">服務說明！</a>
+    </p>
+    <br/><hr>
+
+
 <!-- 熱門公告開始 -->
   <!-- google ad 開始 -->
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

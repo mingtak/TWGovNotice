@@ -54,6 +54,7 @@
 
       <!-- portal-footer -->
     <replace css:theme="footer div.bottom" css:content="#portal-footer" />
+<!--    <before css:theme-children="body" css:content="#portal-footer" /> -->
 
       <!-- 404 not found -->
     <strip css:theme="section#content" css:if-content=".template-default_error_message" />

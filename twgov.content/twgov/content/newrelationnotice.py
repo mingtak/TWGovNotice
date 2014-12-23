@@ -142,6 +142,9 @@ grok.global_adapter(noticeUrl_indexer, name='noticeUrl')
 
 @indexer(INewRelationNotice)
 def biddingCompaniesName_indexer(obj):
-     resultString = safe_unicode(obj.noAwardCompaniesName) + u',' + safe_unicode(obj.winningTenderer)
+     if obj.noAwardCompaniesName == u'':
+         resultString = safe_unicode(obj.winningTenderer)
+     else:
+         resultString = safe_unicode(obj.noAwardCompaniesName) + u',' + safe_unicode(obj.winningTenderer)
      return resultString
 grok.global_adapter(biddingCompaniesName_indexer, name='biddingCompaniesName')

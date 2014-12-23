@@ -151,7 +151,9 @@ class GetNewRelationNotice(BrowserView):
                             #通知系統，建立反向關聯
                             notify(ObjectModifiedEvent(getSelfObject))
                             #設定subject
-                            getSelfObject.setSubject(list(relatedItem_Object.Subject()))
+                            subjectList = list(relatedItem_Object.Subject()) + list([winningTenderer]) + list(noAwardCompaniesName.split(','))
+                            getSelfObject.setSubject(subjectList)
+#                            getSelfObject.setSubject(list(relatedItem_Object.Subject()))
                 except:
                     logger.error(pageUrl)
                     pass

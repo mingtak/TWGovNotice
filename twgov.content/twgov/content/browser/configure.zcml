@@ -101,6 +101,13 @@
     permission="zope2.View"
     class=".noticeanalytics.GovAnalytics" />
 
+  <browser:page
+    for="*"
+    name="getBiddingCompaniesName"
+    permission="cmf.ManagePortal"
+    class=".getBiddingCompaniesName.GetBiddingCompaniesName" />
+
+
 <!--
 測試用，平常不開 -->
   <browser:page
