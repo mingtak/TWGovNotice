@@ -15,7 +15,8 @@ class UserKeywordList(BrowserView):
     def __call__(self):
         catalog = api.portal.get_tool(name='portal_catalog')
         #取得plone預設的帳號型態
-        ploneUsers = api.user.get_users()
+#-->先暫停：20150125
+#-->        ploneUsers = api.user.get_users()
         #cs.auth.facebook產生的id，單獨存在acl_users.cs-facebook-users中，使用portal_membership找不出來
         #使用以下三行撈出facebook型態帳號
         acl_users = api.portal.get_tool(name='acl_users')
@@ -27,8 +28,8 @@ class UserKeywordList(BrowserView):
         users = list()
         for fbUser in facebookUsers:
             users.append(fbUser['id'])
-        for ploneUser in ploneUsers:
-            users.append(unicode(ploneUser.id))
+#-->        for ploneUser in ploneUsers:
+#-->            users.append(unicode(ploneUser.id))
 
         self.users = []
         for userId in users:
