@@ -94,7 +94,7 @@
            </span>
         </p>
         <p><strong>單位名稱：</strong><span tal:content="context/govBranch"></span></p>
-        <p><strong>機關地址：</strong><span tal:content="context/govAddress"></span></p> 
+        <p><strong>機關地址：</strong><span tal:content="context/govAddress"></span></p>
         <p><strong>聯絡人：</strong><span tal:content="context/contact"></span></p> 
         <p><strong>聯絡電話：</strong><span tal:content="context/telNo"></span></p>
         <p><strong>傳真號碼：</strong><span tal:content="context/faxNo"></span></p>
@@ -103,6 +103,7 @@
               tal:attributes="href string:mailto:${context/emailAddress}">
            </a>
         </p>
+
       </div>
 
       <div class="tab tab5" style="display: none;">
@@ -210,6 +211,13 @@
   </ul>
 </div>
 </tal:interest>
+
+  <iframe
+    width="100%"
+    height="300"
+    frameborder="0" style="border:0"
+    tal:attributes="src string:https://www.google.com/maps/embed/v1/place?key=AIzaSyAO1XTINa0rK7SGfyAniKnIicBYKz8i1lI&q=${context/govAddress}">
+  </iframe>
 
 <!-- 工商廣告 begin -->
 <hr>

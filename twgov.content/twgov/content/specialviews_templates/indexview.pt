@@ -34,15 +34,16 @@
   </tal:systemNews>
 <!-- 系統最新消息End -->
 
-
+<tal:initialVisit tal:condition="python:request['AUTHENTICATED_USER'].has_role('Anonymous')">
     <p class="notice info">
       初次造訪嗎？建議先看看我們的<a title="服務說明" href="/system/service_doc">服務說明！</a>
     </p>
     <br/><hr>
-
+</tal:initialVisit>
 
 <!-- 熱門公告開始 -->
   <!-- google ad 開始 -->
+<div class="p97 right widget">
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- ResponsiveAd -->
   <ins class="adsbygoogle"
@@ -53,6 +54,7 @@
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
+</div>
   <!-- google ad 結束 -->
 
 <div class="p97 right widget">
@@ -91,6 +93,7 @@
 <!-- 觀注公告開始 -->
 
   <!-- google ad 開始 -->
+<div class="p97 right widget">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- ResponsiveAd -->
 <ins class="adsbygoogle"
@@ -101,6 +104,7 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+</div>
   <!-- google ad 結束 -->
 
 <div class="p97 right widget">
@@ -139,6 +143,7 @@
 <!-- 巨額公告開始 -->
 
   <!-- google ad 開始 -->
+<div class="p97 right widget">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- ResponsiveAd -->
 <ins class="adsbygoogle"
@@ -149,6 +154,7 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+</div>
   <!-- google ad 結束 -->
 
 <div class="p97 right widget">
